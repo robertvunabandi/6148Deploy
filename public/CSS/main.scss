@@ -1,0 +1,204 @@
+/* * * MAIN STUFFS * * */
+
+* {font-family: 'Amiri', serif;font-size: 2rem;}
+.fAmiri {font-family: 'Amiri', serif !important;}
+.fQuicksand {font-family: 'Quicksand', sans-serif !important;}
+input[type=text] {
+	overflow: hidden;
+}
+.noPadding {padding: 0 !important;}
+.noMargin {margin: 0 !important;}
+
+h1, h2, h3, h4, h5, h6 {@extend .noPadding; text-align: center; font-weight: bold;}
+p {margin: 1rem 0rem 0rem 0rem;}
+h1 {font-size: 6rem;}
+h2 {font-size: 5rem;}
+h3 {font-size: 4rem;}
+h4, h5, h6 {font-size: 3.5rem;}
+input:invalid {color: rgba(255,0,0,1);}
+
+.navbar-partial {
+	padding-left: 0rem !important;
+	padding-right: 0rem !important;
+	background-color: rgba(0,255,0,0.5);
+	a:link, a {
+		text-decoration: none;
+		text-transform: none;
+		color: black;
+	}
+	a:hover {
+		color: blue;
+	}
+	ul {
+		padding-left: 0rem !important;
+		padding-right: 0rem !important;
+		li {
+			padding-left: 0rem !important;
+			padding-right: 0rem !important;
+			display: inline-block;
+			$height: 10rem;
+			min-height: $height; max-height: $height;
+			line-height: $height;
+			h1, h2, h3, h4, h5, h6 {
+				@extend .noMargin;
+				text-align: left !important;
+				line-height: $height;
+			}
+			// Set min-height and max-height automatically onload
+		}
+	}
+}
+.login-modal {
+	z-index: 2;
+	display:none;
+	position:fixed; left: 0; top: 0;
+	// background-color: rgba(0,0,0,0.3);
+	width: 100%; height: 100%;
+	transition: background 200ms linear;
+    -webkit-transition: background 200ms linear;
+    -moz-transition: background 200ms linear;
+	.login-modal-temp {
+		z-index: 12;
+		position:fixed; left: 0; top: 0;
+		width: 100%; height: 100%;
+	}
+	.login-modal-content {
+		background-color: white; padding: 1rem;
+		top: 10rem;
+		z-index: 14;
+		.login-modal-form {
+			input[type=text], input[type=password], input[type=date], input[type=submit], input[type=email]{
+				width: 100%;
+			}
+		}
+	}
+}
+.login-click {
+	transition: background-color 200ms, color 200ms;
+	color: white;
+	background-color: black;
+	padding: 0px 10px;
+}
+.login-click:hover {
+	background-color: red;
+}
+.login-click:active {
+	background-color: blue;
+}
+
+/* * * INDEX PAGE * * */
+.header {
+	min-height: 10rem;
+}
+
+.global {
+	.search {
+		border: 1px solid black;
+		padding: 1rem;
+		background-color: gray;
+		.search-word-input {
+			/* Small devices (tablets, 769px and down) * /
+			@media (max-width: 769px) {
+				font-size: 6rem;
+			}
+			
+			/* Medium devices (desktops, 769px and up) * /
+			@media (min-width: 769px) {
+				font-size: 5rem;
+			}
+			
+			/* Large devices (large desktops, 1200px and up) * /
+			@media (min-width: 1200px) {
+				font-size: 5rem;
+			}*/
+			display: block;
+			font-size: 4rem;
+			text-align: center;
+			width: 100%;
+		}
+		.result-word {
+			@extend .fQuicksand;
+			display: none;
+			font-size: 2rem;
+			text-align: center;
+			background-color: purple;
+			transition: opacity 200ms, background-color 200ms, color 200ms;
+			h1, h2, h3, h4, h5, h6 {
+				font-weight: bold;
+				background-color: rgba(0,255,0,0.5);
+				margin: 1rem 0rem 0rem 0rem !important;
+				padding: 0.5rem 0rem !important;
+			}
+			p {
+				display: block;
+				background-color: red;
+				padding: 0.5rem;
+			}
+			.add-word {
+				position: fixed;
+				background-color: blue;
+				padding: 1rem 2rem;
+			}
+		}
+	}
+	
+}
+
+/* * * SIGN-UP PAGE * * */
+
+.sign-up-box {
+	position: relative !important;
+	background-color: rgba(0,255,255,0.5);
+	.sign-up-form {
+		padding: 30px 30px;
+		background-color: rgba(255,0,255,0.5);
+		input[type=text], input[type=password], input[type=date], input[type=submit], input[type=email] {
+			width: 100%;
+			text-align: center;
+			background-color: rgba(255,255,255,0.4);
+			border-bottom: 3px solid rgba(255,255,255,1);
+			border-top: 0px solid black;
+			border-left: 0px solid black;
+			border-right: 0px solid black;
+		}
+		select {
+			background-color: rgba(255,255,255,0.4);
+			border-bottom: 3px solid rgba(255,255,255,1);
+			border-top: 0px solid black;
+			border-left: 0px solid black;
+			border-right: 0px solid black;
+		}
+		table {
+			width: 100%;
+			tbody {
+				background-color: rgba(0,0,255,0.5);
+				td {
+					padding: 5px 2px;
+				}
+				// .data-info {
+				// 	background-color: rgba(0,255,0,0.5);
+				// 	text-align: right;
+				// 	padding: 0px 10px;
+				// }
+				.data-input {
+					background-color: rgba(255,0,0,0.5);
+					text-align: right;
+					text-align: center;
+					#userBirthday{
+						.userBirthday_Input {
+							border: none;
+							margin: 0rem 2rem;
+						}
+					}
+				}
+				.agree-section {
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+
+
+

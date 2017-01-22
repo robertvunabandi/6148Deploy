@@ -1,0 +1,189 @@
+/* * * MAIN STUFFS * * */
+* {
+  font-family: 'Amiri', serif;
+  font-size: 2rem; }
+
+.fAmiri {
+  font-family: 'Amiri', serif !important; }
+
+.fQuicksand, .global .search .result-word {
+  font-family: 'Quicksand', sans-serif !important; }
+
+input[type=text] {
+  overflow: hidden; }
+
+.noPadding, h1, h2, h3, h4, h5, h6 {
+  padding: 0 !important; }
+
+.noMargin, .navbar-partial ul li h1, .navbar-partial ul li h2, .navbar-partial ul li h3, .navbar-partial ul li h4, .navbar-partial ul li h5, .navbar-partial ul li h6 {
+  margin: 0 !important; }
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  font-weight: bold; }
+
+p {
+  margin: 1rem 0rem 0rem 0rem; }
+
+h1 {
+  font-size: 6rem; }
+
+h2 {
+  font-size: 5rem; }
+
+h3 {
+  font-size: 4rem; }
+
+h4, h5, h6 {
+  font-size: 3.5rem; }
+
+input:invalid {
+  color: red; }
+
+.navbar-partial {
+  padding-left: 0rem !important;
+  padding-right: 0rem !important;
+  background-color: rgba(0, 255, 0, 0.5); }
+  .navbar-partial a:link, .navbar-partial a {
+    text-decoration: none;
+    text-transform: none;
+    color: black; }
+  .navbar-partial a:hover {
+    color: blue; }
+  .navbar-partial ul {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important; }
+    .navbar-partial ul li {
+      padding-left: 0rem !important;
+      padding-right: 0rem !important;
+      display: inline-block;
+      min-height: 10rem;
+      max-height: 10rem;
+      line-height: 10rem; }
+      .navbar-partial ul li h1, .navbar-partial ul li h2, .navbar-partial ul li h3, .navbar-partial ul li h4, .navbar-partial ul li h5, .navbar-partial ul li h6 {
+        text-align: left !important;
+        line-height: 10rem; }
+
+.login-modal {
+  z-index: 2;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: background 200ms linear;
+  -webkit-transition: background 200ms linear;
+  -moz-transition: background 200ms linear; }
+  .login-modal .login-modal-temp {
+    z-index: 12;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; }
+  .login-modal .login-modal-content {
+    background-color: white;
+    padding: 1rem;
+    top: 10rem;
+    z-index: 14; }
+    .login-modal .login-modal-content .login-modal-form input[type=text], .login-modal .login-modal-content .login-modal-form input[type=password], .login-modal .login-modal-content .login-modal-form input[type=date], .login-modal .login-modal-content .login-modal-form input[type=submit], .login-modal .login-modal-content .login-modal-form input[type=email] {
+      width: 100%; }
+
+.login-click {
+  transition: background-color 200ms, color 200ms;
+  color: white;
+  background-color: black;
+  padding: 0px 10px; }
+
+.login-click:hover {
+  background-color: red; }
+
+.login-click:active {
+  background-color: blue; }
+
+/* * * INDEX PAGE * * */
+.header {
+  min-height: 10rem; }
+
+.global .search {
+  border: 1px solid black;
+  padding: 1rem;
+  background-color: gray; }
+  .global .search .search-word-input {
+    /* Small devices (tablets, 769px and down) * /
+    @media (max-width: 769px) {
+    	font-size: 6rem;
+    }
+    
+    /* Medium devices (desktops, 769px and up) * /
+    @media (min-width: 769px) {
+    	font-size: 5rem;
+    }
+    
+    /* Large devices (large desktops, 1200px and up) * /
+    @media (min-width: 1200px) {
+    	font-size: 5rem;
+    }*/
+    display: block;
+    font-size: 4rem;
+    text-align: center;
+    width: 100%; }
+  .global .search .result-word {
+    display: none;
+    font-size: 2rem;
+    text-align: center;
+    background-color: purple;
+    transition: opacity 200ms, background-color 200ms, color 200ms; }
+    .global .search .result-word h1, .global .search .result-word h2, .global .search .result-word h3, .global .search .result-word h4, .global .search .result-word h5, .global .search .result-word h6 {
+      font-weight: bold;
+      background-color: rgba(0, 255, 0, 0.5);
+      margin: 1rem 0rem 0rem 0rem !important;
+      padding: 0.5rem 0rem !important; }
+    .global .search .result-word p {
+      display: block;
+      background-color: red;
+      padding: 0.5rem; }
+    .global .search .result-word .add-word {
+      position: fixed;
+      background-color: blue;
+      padding: 1rem 2rem; }
+
+/* * * SIGN-UP PAGE * * */
+.sign-up-box {
+  position: relative !important;
+  background-color: rgba(0, 255, 255, 0.5); }
+  .sign-up-box .sign-up-form {
+    padding: 30px 30px;
+    background-color: rgba(255, 0, 255, 0.5); }
+    .sign-up-box .sign-up-form input[type=text], .sign-up-box .sign-up-form input[type=password], .sign-up-box .sign-up-form input[type=date], .sign-up-box .sign-up-form input[type=submit], .sign-up-box .sign-up-form input[type=email] {
+      width: 100%;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-bottom: 3px solid white;
+      border-top: 0px solid black;
+      border-left: 0px solid black;
+      border-right: 0px solid black; }
+    .sign-up-box .sign-up-form select {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-bottom: 3px solid white;
+      border-top: 0px solid black;
+      border-left: 0px solid black;
+      border-right: 0px solid black; }
+    .sign-up-box .sign-up-form table {
+      width: 100%; }
+      .sign-up-box .sign-up-form table tbody {
+        background-color: rgba(0, 0, 255, 0.5); }
+        .sign-up-box .sign-up-form table tbody td {
+          padding: 5px 2px; }
+        .sign-up-box .sign-up-form table tbody .data-input {
+          background-color: rgba(255, 0, 0, 0.5);
+          text-align: right;
+          text-align: center; }
+          .sign-up-box .sign-up-form table tbody .data-input #userBirthday .userBirthday_Input {
+            border: none;
+            margin: 0rem 2rem; }
+        .sign-up-box .sign-up-form table tbody .agree-section {
+          text-align: center; }
+
+/*# sourceMappingURL=main.css.map */

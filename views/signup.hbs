@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{title}}</title>
+	<meta charset="utf-8">
+	<!-- Link Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Link animate.css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<!-- Link w3.css -->
+	{{!-- <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"> --}}
+	<!-- Link CSS/main.css -->
+	<link rel="stylesheet" type="text/css" href="/CSS/main.css">
+	<!-- Link font from Google API -->
+	<link href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700|Quicksand:400,700" rel="stylesheet">
+	{{!-- 
+		font-family: 'Amiri', serif;
+		font-family: 'Quicksand', sans-serif; --}}
+	<!-- Link jQuery, and Bootstrap jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- Link JS/navbar.js -->
+	<script type="text/javascript" src="/JS/navbar.js"></script>
+	<!-- Link JS/signup.js -->
+	<script type="text/javascript" src="/JS/signup.js"></script>
+</head>
+<body>
+	{{> navbar}}
+	<div class="login-modal">
+		<div class="login-modal-temp"></div>
+		{{> login-modal}}
+	</div>
+	<div class="container-fluid sign-up-box">
+	<form name="sign-up" method="post" action="/userSignup" class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 sign-up-form" >
+		<h4>Create a Lexis account</h4>
+		<table>
+		<tbody>
+			<tr>
+			{{!-- <td class="data-info"><label for="userName">Username</label></td> --}}
+				<td class="data-input"><input type="text" name="userName" autocomplete='off' pattern="[\w]+" oninvalid="setCustomValidity('Use only the characters in the alphabets, numbers, or \'_\'. Thanks.\');" placeholder="set a Username" required></td>
+			</tr>
+			<tr>
+			{{!-- <td class="data-info"><label for="userEmail">Email</label></td> --}}
+				<td class="data-input"><input type="email" name="userEmail" autocomplete='off' placeholder="type your Email" required></td>
+			</tr>
+			<tr>
+				{{!-- <td class="data-info">
+				<label for="userBirthday">Birthday</label>
+				</td> --}}
+				<td class="data-input" id="userBirthday">
+				</td>
+			</tr>
+			<tr>
+			{{!-- <td class="data-info"><label for="userPassword">Password</label></td> --}}
+				<td class="data-input"><input type="password" name="userPassword" maxlength="25" autocomplete='off' pattern="[\w|\W]{8,25}" oninvalid="setCustomValidity('Use at least 8 characters and at most 25 characters. Click here to dismiss.');" onchange="setCustomValidity('');" placeholder="set a Password" required></td>
+			</tr>
+			<tr>
+				<td class="agree-section"><input type="checkbox" name="agree-terms" autocomplete='off' required> I agree with Lexis' <a>Terms of Services</a>
+				</td>
+			</tr>
+		<tbody>
+		</table>
+		<input type="submit" name="sign-up-submit" class="sign-up-submit" value="Sign Up">
+		<p>Do you already have an account? <span class="login-click"> Login </span></p>
+	</form>
+	</div>
+</body>
+</html>

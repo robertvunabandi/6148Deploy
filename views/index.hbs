@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{title}}</title>
+	<meta charset="utf-8">
+	<!-- Link Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Link animate.css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<!-- Link w3.css -->
+	{{!-- <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"> --}}
+	<!-- Link CSS/main.css -->
+	<link rel="stylesheet" type="text/css" href="/CSS/main.css">
+	<!-- Link font from Google API -->
+	<link href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700|Quicksand:400,700" rel="stylesheet">
+	{{!-- 
+		font-family: 'Amiri', serif;
+		font-family: 'Quicksand', sans-serif; --}}
+	<!-- Link jQuery, and Bootstrap jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- Link JS/navbar.js -->
+	<script type="text/javascript" src="/JS/navbar.js"></script>
+	<!-- Link JS/script.js -->
+	<script type="text/javascript" src="/JS/script.js"></script>
+	{{!-- http://www.w3schools.com/jquery/jquery_get_started.asp ASK AASHISH --}}
+</head>
+<body>
+	{{> navbar}}
+	<div class="login-modal">
+		<div class="login-modal-temp"></div>
+		{{> login-modal}}
+	</div>
+	<div class="container-fluid global">
+		<div class="col-xs-10 col-md-6 col-lg-4 col-xs-offset-1 	col-md-offset-3 col-lg-offset-4 search">
+			<input type="text" name="search-word" class="search-word-input" autocomplete="on" pattern="[a-zA-Z]*" placeholder="look up a word">
+			{{!-- oninvalid="setCustomValidity('Please, use only letters in the alphabet. No numbers nor characters are allowed. Thank you.')" oninput="setCustomValidity('')" --}}
+				{{!-- make sure to add an src for an svg image as search. 	Back up a png --}}
+			<div class="result-word">
+				<span class="add-word">+</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
