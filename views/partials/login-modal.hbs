@@ -1,10 +1,10 @@
 <div class="col-xs-10 col-md-4 col-lg-4 col-xs-offset-1 col-md-offset-4 col-lg-offset-4 login-modal-content fadeInUpBig animated">
 <form name="login" method="post" action="/login" class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 login-modal-form">
 	<h3>Lexis</h3>
-	<label for="userInf">Username or email:</label><br>
-	<input type="text" name="userInf" id="userInf"><br>
-	<label for="userPassword">Password:</label><br>
-	<input type="password" name="userPassword" id="userPassword" minlength="2" maxlength="25"><br>
+	{{!-- <label for="userInf">Username or email:</label><br> --}}
+	<input type="text" name="userInf" id="userInf" placeholder="Username or Email"><br>
+	{{!-- <label for="userPassword">Password:</label><br> --}}
+	<input type="password" name="userPassword" id="userPassword" minlength="2" maxlength="25" placeholder="Password"><br>
 	<input type="submit" name="login-submit" class="login-submit" value="Login">
 	<p id="onIncorrect"></p>
 	<a href="/signup">Forgot your password or username?</a>

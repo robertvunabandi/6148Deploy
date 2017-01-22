@@ -12,10 +12,9 @@
 	<!-- Link CSS/main.css -->
 	<link rel="stylesheet" type="text/css" href="/CSS/main.css">
 	<!-- Link font from Google API -->
-	<link href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700|Quicksand:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700" rel="stylesheet">
 	{{!-- 
-		font-family: 'Amiri', serif;
-		font-family: 'Quicksand', sans-serif; --}}
+		font-family: 'Amiri', serif; --}}
 	<!-- Link jQuery, and Bootstrap jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
@@ -37,19 +36,19 @@
 		<table>
 		<tbody>
 			<tr>
+				{{!-- <td class="data-info">
+				<label for="userBirthday">Birthday</label>
+				</td> --}}
+				<td class="data-input" id="userBirthday">
+				</td>
+			</tr>
+			<tr>
 			{{!-- <td class="data-info"><label for="userName">Username</label></td> --}}
 				<td class="data-input"><input type="text" name="userName" autocomplete='off' pattern="[\w]+" oninvalid="setCustomValidity('Use only the characters in the alphabets, numbers, or \'_\'. Thanks.\');" placeholder="set a Username" required></td>
 			</tr>
 			<tr>
 			{{!-- <td class="data-info"><label for="userEmail">Email</label></td> --}}
 				<td class="data-input"><input type="email" name="userEmail" autocomplete='off' placeholder="type your Email" required></td>
-			</tr>
-			<tr>
-				{{!-- <td class="data-info">
-				<label for="userBirthday">Birthday</label>
-				</td> --}}
-				<td class="data-input" id="userBirthday">
-				</td>
 			</tr>
 			<tr>
 			{{!-- <td class="data-info"><label for="userPassword">Password</label></td> --}}

@@ -6,9 +6,6 @@
 .fAmiri {
   font-family: 'Amiri', serif !important; }
 
-.fQuicksand, .global .search .result-word {
-  font-family: 'Quicksand', sans-serif !important; }
-
 input[type=text] {
   overflow: hidden; }
 
@@ -38,12 +35,15 @@ h4, h5, h6 {
   font-size: 3.5rem; }
 
 input:invalid {
-  color: red; }
+  color: #c8af32; }
+
+body {
+  background-color: rgba(200, 125, 50, 0.7); }
 
 .navbar-partial {
   padding-left: 0rem !important;
   padding-right: 0rem !important;
-  background-color: rgba(0, 255, 0, 0.5); }
+  background-color: rgba(50, 175, 255, 0.9); }
   .navbar-partial a:link, .navbar-partial a {
     text-decoration: none;
     text-transform: none;
@@ -77,18 +77,49 @@ input:invalid {
   -moz-transition: background 200ms linear; }
   .login-modal .login-modal-temp {
     z-index: 12;
+    width: 100%;
+    height: 100%;
     position: fixed;
     left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%; }
+    top: 0; }
   .login-modal .login-modal-content {
     background-color: white;
     padding: 1rem;
     top: 10rem;
     z-index: 14; }
-    .login-modal .login-modal-content .login-modal-form input[type=text], .login-modal .login-modal-content .login-modal-form input[type=password], .login-modal .login-modal-content .login-modal-form input[type=date], .login-modal .login-modal-content .login-modal-form input[type=submit], .login-modal .login-modal-content .login-modal-form input[type=email] {
+    .login-modal .login-modal-content .login-modal-form input[type=submit] {
+      margin-top: 1rem;
+      color: black;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.1);
+      border: 0px solid rgba(0, 0, 0, 0.5);
+      transition: background-color 200ms;
       width: 100%; }
+    .login-modal .login-modal-content .login-modal-form input[type=submit]:hover {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.4); }
+    .login-modal .login-modal-content .login-modal-form input[type=submit]:focus, .login-modal .login-modal-content .login-modal-form input[type=submit]:active {
+      color: white;
+      background-color: rgba(200, 125, 50, 0.7); }
+    .login-modal .login-modal-content .login-modal-form input[type=text], .login-modal .login-modal-content .login-modal-form input[type=password], .login-modal .login-modal-content .login-modal-form input[type=date], .login-modal .login-modal-content .login-modal-form input[type=email] {
+      margin-top: 1rem;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-bottom: 3px solid black;
+      border-top: 0px solid rgba(0, 0, 0, 0.4);
+      border-left: 0px solid black;
+      border-right: 0px solid black;
+      transition: background-color 200ms;
+      width: 100%; }
+    .login-modal .login-modal-content .login-modal-form input[type=text]:hover, .login-modal .login-modal-content .login-modal-form input[type=password]:hover, .login-modal .login-modal-content .login-modal-form input[type=date]:hover, .login-modal .login-modal-content .login-modal-form input[type=email]:hover, .login-modal .login-modal-content .login-modal-form select:hover, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=text]:hover, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=text]:hover, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=password]:hover, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=password]:hover, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=date]:hover, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=date]:hover, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=submit]:hover, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=submit]:hover, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=email]:hover, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=email]:hover {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.4); }
+    .login-modal .login-modal-content .login-modal-form input[type=text]:focus, .login-modal .login-modal-content .login-modal-form input[type=password]:focus, .login-modal .login-modal-content .login-modal-form input[type=date]:focus, .login-modal .login-modal-content .login-modal-form input[type=email]:focus, .login-modal .login-modal-content .login-modal-form select:focus, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=text]:focus, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=text]:focus, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=password]:focus, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=password]:focus, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=date]:focus, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=date]:focus, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=submit]:focus, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=submit]:focus, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=email]:focus, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=email]:focus {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7); }
+    .login-modal .login-modal-content .login-modal-form input[type=text]:active, .login-modal .login-modal-content .login-modal-form input[type=password]:active, .login-modal .login-modal-content .login-modal-form input[type=date]:active, .login-modal .login-modal-content .login-modal-form input[type=email]:active, .login-modal .login-modal-content .login-modal-form select:active, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=text]:active, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=text]:active, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=password]:active, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=password]:active, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=date]:active, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=date]:active, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=submit]:active, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=submit]:active, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=email]:active, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=email]:active {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7); }
 
 .login-click {
   transition: background-color 200ms, color 200ms;
@@ -102,14 +133,29 @@ input:invalid {
 .login-click:active {
   background-color: blue; }
 
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: pink; }
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: pink; }
+
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: pink; }
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: pink; }
+
 /* * * INDEX PAGE * * */
 .header {
   min-height: 10rem; }
 
 .global .search {
-  border: 1px solid black;
   padding: 1rem;
-  background-color: gray; }
+  background-color: rgba(0, 0, 0, 0.5); }
   .global .search .search-word-input {
     /* Small devices (tablets, 769px and down) * /
     @media (max-width: 769px) {
@@ -125,24 +171,34 @@ input:invalid {
     @media (min-width: 1200px) {
     	font-size: 5rem;
     }*/
+    background-color: rgba(255, 255, 255, 0.2);
+    border-bottom: 3px solid white;
+    border-top: 0px solid black;
+    border-left: 0px solid black;
+    border-right: 0px solid black;
     display: block;
     font-size: 4rem;
     text-align: center;
-    width: 100%; }
+    width: 100%;
+    transition: background-color 200ms, color 200ms; }
+  .global .search .search-word-input:hover {
+    background-color: rgba(255, 255, 255, 0.7); }
+  .global .search .search-word-input:active, .global .search .search-word-input:focus {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white; }
   .global .search .result-word {
     display: none;
     font-size: 2rem;
     text-align: center;
-    background-color: purple;
     transition: opacity 200ms, background-color 200ms, color 200ms; }
     .global .search .result-word h1, .global .search .result-word h2, .global .search .result-word h3, .global .search .result-word h4, .global .search .result-word h5, .global .search .result-word h6 {
       font-weight: bold;
-      background-color: rgba(0, 255, 0, 0.5);
+      background-color: rgba(255, 255, 255, 0.9);
       margin: 1rem 0rem 0rem 0rem !important;
       padding: 0.5rem 0rem !important; }
     .global .search .result-word p {
       display: block;
-      background-color: red;
+      background-color: rgba(255, 255, 255, 0.7);
       padding: 0.5rem; }
     .global .search .result-word .add-word {
       position: fixed;
@@ -151,39 +207,46 @@ input:invalid {
 
 /* * * SIGN-UP PAGE * * */
 .sign-up-box {
-  position: relative !important;
-  background-color: rgba(0, 255, 255, 0.5); }
+  position: relative !important; }
   .sign-up-box .sign-up-form {
     padding: 30px 30px;
-    background-color: rgba(255, 0, 255, 0.5); }
-    .sign-up-box .sign-up-form input[type=text], .sign-up-box .sign-up-form input[type=password], .sign-up-box .sign-up-form input[type=date], .sign-up-box .sign-up-form input[type=submit], .sign-up-box .sign-up-form input[type=email] {
-      width: 100%;
+    /*select {
+    	background-color: rgba(255,255,255,0.4);
+    	border-bottom: 3px solid rgba(255,255,255,1);
+    	border-top: 0px solid black;
+    	border-left: 0px solid black;
+    	border-right: 0px solid black;
+    }*/ }
+    .sign-up-box .sign-up-form select, .sign-up-box .sign-up-form input[type=text], .sign-up-box .sign-up-form input[type=password], .sign-up-box .sign-up-form input[type=date], .sign-up-box .sign-up-form input[type=submit], .sign-up-box .sign-up-form input[type=email] {
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.4);
+      background-color: rgba(255, 255, 255, 0.1);
       border-bottom: 3px solid white;
       border-top: 0px solid black;
       border-left: 0px solid black;
-      border-right: 0px solid black; }
-    .sign-up-box .sign-up-form select {
-      background-color: rgba(255, 255, 255, 0.4);
-      border-bottom: 3px solid white;
-      border-top: 0px solid black;
-      border-left: 0px solid black;
-      border-right: 0px solid black; }
+      border-right: 0px solid black;
+      transition: background-color 200ms; }
+    .sign-up-box .sign-up-form input[type=text], .sign-up-box .sign-up-form input[type=password], .sign-up-box .sign-up-form input[type=date], .sign-up-box .sign-up-form input[type=submit], .sign-up-box .sign-up-form input[type=email] {
+      width: 100%; }
+    .sign-up-box .sign-up-form input[type=text]:hover, .sign-up-box .sign-up-form input[type=password]:hover, .sign-up-box .sign-up-form input[type=date]:hover, .sign-up-box .sign-up-form input[type=submit]:hover, .sign-up-box .sign-up-form input[type=email]:hover, .sign-up-box .sign-up-form select:hover, .sign-up-box .sign-up-form input[type=text]:hover, .sign-up-box .sign-up-form input[type=password]:hover, .sign-up-box .sign-up-form input[type=date]:hover, .sign-up-box .sign-up-form input[type=submit]:hover, .sign-up-box .sign-up-form input[type=email]:hover {
+      color: white;
+      background-color: rgba(255, 255, 255, 0.4); }
+    .sign-up-box .sign-up-form input[type=text]:focus, .sign-up-box .sign-up-form input[type=password]:focus, .sign-up-box .sign-up-form input[type=date]:focus, .sign-up-box .sign-up-form input[type=submit]:focus, .sign-up-box .sign-up-form input[type=email]:focus, .sign-up-box .sign-up-form select:focus, .sign-up-box .sign-up-form input[type=text]:focus, .sign-up-box .sign-up-form input[type=password]:focus, .sign-up-box .sign-up-form input[type=date]:focus, .sign-up-box .sign-up-form input[type=submit]:focus, .sign-up-box .sign-up-form input[type=email]:focus {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7); }
+    .sign-up-box .sign-up-form input[type=text]:active, .sign-up-box .sign-up-form input[type=password]:active, .sign-up-box .sign-up-form input[type=date]:active, .sign-up-box .sign-up-form input[type=submit]:active, .sign-up-box .sign-up-form input[type=email]:active, .sign-up-box .sign-up-form select:active, .sign-up-box .sign-up-form input[type=text]:active, .sign-up-box .sign-up-form input[type=password]:active, .sign-up-box .sign-up-form input[type=date]:active, .sign-up-box .sign-up-form input[type=submit]:active, .sign-up-box .sign-up-form input[type=email]:active {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7); }
     .sign-up-box .sign-up-form table {
       width: 100%; }
-      .sign-up-box .sign-up-form table tbody {
-        background-color: rgba(0, 0, 255, 0.5); }
-        .sign-up-box .sign-up-form table tbody td {
-          padding: 5px 2px; }
-        .sign-up-box .sign-up-form table tbody .data-input {
-          background-color: rgba(255, 0, 0, 0.5);
-          text-align: right;
-          text-align: center; }
-          .sign-up-box .sign-up-form table tbody .data-input #userBirthday .userBirthday_Input {
-            border: none;
-            margin: 0rem 2rem; }
-        .sign-up-box .sign-up-form table tbody .agree-section {
-          text-align: center; }
+      .sign-up-box .sign-up-form table tbody td {
+        padding: 5px 2px; }
+      .sign-up-box .sign-up-form table tbody .data-input {
+        text-align: right;
+        text-align: center; }
+        .sign-up-box .sign-up-form table tbody .data-input #userBirthday .userBirthday_Input {
+          border: none;
+          margin: 0rem 2rem; }
+      .sign-up-box .sign-up-form table tbody .agree-section {
+        text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

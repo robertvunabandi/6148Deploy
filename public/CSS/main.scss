@@ -2,10 +2,7 @@
 
 * {font-family: 'Amiri', serif;font-size: 2rem;}
 .fAmiri {font-family: 'Amiri', serif !important;}
-.fQuicksand {font-family: 'Quicksand', sans-serif !important;}
-input[type=text] {
-	overflow: hidden;
-}
+input[type=text] {overflow: hidden;}
 .noPadding {padding: 0 !important;}
 .noMargin {margin: 0 !important;}
 
@@ -15,20 +12,14 @@ h1 {font-size: 6rem;}
 h2 {font-size: 5rem;}
 h3 {font-size: 4rem;}
 h4, h5, h6 {font-size: 3.5rem;}
-input:invalid {color: rgba(255,0,0,1);}
-
+input:invalid {color: rgba(200,175,50,1);} //Change the color on invalid
+body {background-color: rgba(200,125,50,0.7);}
 .navbar-partial {
 	padding-left: 0rem !important;
 	padding-right: 0rem !important;
-	background-color: rgba(0,255,0,0.5);
-	a:link, a {
-		text-decoration: none;
-		text-transform: none;
-		color: black;
-	}
-	a:hover {
-		color: blue;
-	}
+	background-color: rgba(50,175,255,0.9);
+	a:link, a {text-decoration: none; text-transform: none; color: black;}
+	a:hover {color: blue;}
 	ul {
 		padding-left: 0rem !important;
 		padding-right: 0rem !important;
@@ -58,17 +49,54 @@ input:invalid {color: rgba(255,0,0,1);}
     -webkit-transition: background 200ms linear;
     -moz-transition: background 200ms linear;
 	.login-modal-temp {
-		z-index: 12;
+		z-index: 12; width: 100%; height: 100%;
 		position:fixed; left: 0; top: 0;
-		width: 100%; height: 100%;
 	}
 	.login-modal-content {
 		background-color: white; padding: 1rem;
 		top: 10rem;
 		z-index: 14;
 		.login-modal-form {
-			input[type=text], input[type=password], input[type=date], input[type=submit], input[type=email]{
+			input[type=submit]{
+				margin-top: 1rem;
+				color: black;
+				text-align: center;
+				background-color: rgba(0,0,0,0.1);
+				border: 0px solid rgba(0,0,0,0.5);
+				transition: background-color 200ms;
 				width: 100%;
+			}
+			input[type=submit]:hover{
+				color: white;
+				background-color: rgba(0,0,0,0.4);
+			}
+			input[type=submit]:focus, input[type=submit]:active {
+				color: white;
+				background-color: rgba(200,125,50,0.7);
+			}
+
+			input[type=text], input[type=password], input[type=date], input[type=email]{
+				margin-top: 1rem;
+				text-align: center;
+				background-color: rgba(0,0,0,0.1);
+				border-bottom: 3px solid rgba(0,0,0,1);
+				border-top: 0px solid rgba(0,0,0,0.4);
+				border-left: 0px solid black;
+				border-right: 0px solid black;
+				transition: background-color 200ms;
+				width: 100%;
+			}
+			input[type=text]:hover, input[type=password]:hover, input[type=date]:hover, input[type=email]:hover, select:hover {
+				color: white;
+				background-color: rgba(0,0,0,0.4);
+			}
+			input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=email]:focus, select:focus {
+				color: white;
+				background-color: rgba(0,0,0,0.7);
+			}
+			input[type=text]:active, input[type=password]:active, input[type=date]:active, input[type=email]:active, select:active {
+				color: white;
+				background-color: rgba(0,0,0,0.7);
 			}
 		}
 	}
@@ -79,12 +107,16 @@ input:invalid {color: rgba(255,0,0,1);}
 	background-color: black;
 	padding: 0px 10px;
 }
-.login-click:hover {
-	background-color: red;
-}
-.login-click:active {
-	background-color: blue;
-}
+.login-click:hover {background-color: red;}
+.login-click:active {background-color: blue;}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: pink;}
+::-moz-placeholder { /* Firefox 19+ */
+  color: pink;}
+:-ms-input-placeholder { /* IE 10+ */
+  color: pink;}
+:-moz-placeholder { /* Firefox 18- */
+  color: pink;}
 
 /* * * INDEX PAGE * * */
 .header {
@@ -93,9 +125,8 @@ input:invalid {color: rgba(255,0,0,1);}
 
 .global {
 	.search {
-		border: 1px solid black;
 		padding: 1rem;
-		background-color: gray;
+		background-color: rgba(0,0,0,0.5);
 		.search-word-input {
 			/* Small devices (tablets, 769px and down) * /
 			@media (max-width: 769px) {
@@ -111,27 +142,37 @@ input:invalid {color: rgba(255,0,0,1);}
 			@media (min-width: 1200px) {
 				font-size: 5rem;
 			}*/
+			background-color: rgba(255,255,255,0.2);
+			border-bottom: 3px solid rgba(255,255,255,1);
+			border-top: 0px solid black;
+			border-left: 0px solid black;
+			border-right: 0px solid black;
 			display: block;
-			font-size: 4rem;
-			text-align: center;
+			font-size: 4rem; text-align: center;
 			width: 100%;
+			transition: background-color 200ms, color 200ms;
+		}
+		.search-word-input:hover {
+			background-color: rgba(255,255,255,0.7);
+		}
+		.search-word-input:active, .search-word-input:focus {
+			background-color: rgba(0,0,0,0.8);
+			color: white;
 		}
 		.result-word {
-			@extend .fQuicksand;
 			display: none;
 			font-size: 2rem;
 			text-align: center;
-			background-color: purple;
 			transition: opacity 200ms, background-color 200ms, color 200ms;
 			h1, h2, h3, h4, h5, h6 {
 				font-weight: bold;
-				background-color: rgba(0,255,0,0.5);
+				background-color: rgba(255,255,255,0.9);
 				margin: 1rem 0rem 0rem 0rem !important;
 				padding: 0.5rem 0rem !important;
 			}
 			p {
 				display: block;
-				background-color: red;
+				background-color: rgba(255,255,255,0.7);
 				padding: 0.5rem;
 			}
 			.add-word {
@@ -148,40 +189,52 @@ input:invalid {color: rgba(255,0,0,1);}
 
 .sign-up-box {
 	position: relative !important;
-	background-color: rgba(0,255,255,0.5);
 	.sign-up-form {
 		padding: 30px 30px;
-		background-color: rgba(255,0,255,0.5);
-		input[type=text], input[type=password], input[type=date], input[type=submit], input[type=email] {
-			width: 100%;
-			text-align: center;
-			background-color: rgba(255,255,255,0.4);
-			border-bottom: 3px solid rgba(255,255,255,1);
-			border-top: 0px solid black;
-			border-left: 0px solid black;
-			border-right: 0px solid black;
-		}
 		select {
+			text-align: center;
+			background-color: rgba(255,255,255,0.1);
+			border-bottom: 3px solid rgba(255,255,255,1);
+			border-top: 0px solid black;
+			border-left: 0px solid black;
+			border-right: 0px solid black;
+			transition: background-color 200ms;
+		}
+		input[type=text], input[type=password], input[type=date], input[type=submit], input[type=email] {
+			@extend select;
+			width: 100%;
+		}
+		input[type=text]:hover, input[type=password]:hover, input[type=date]:hover, input[type=submit]:hover, input[type=email]:hover, select:hover {
+			color: white;
+			background-color: rgba(255,255,255,0.4);
+		}
+		input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=submit]:focus, input[type=email]:focus, select:focus {
+			color: white;
+			background-color: rgba(0,0,0,0.7);
+		}
+		input[type=text]:active, input[type=password]:active, input[type=date]:active, input[type=submit]:active, input[type=email]:active, select:active {
+			color: white;
+			background-color: rgba(0,0,0,0.7);
+		}
+		/*select {
 			background-color: rgba(255,255,255,0.4);
 			border-bottom: 3px solid rgba(255,255,255,1);
 			border-top: 0px solid black;
 			border-left: 0px solid black;
 			border-right: 0px solid black;
-		}
+		}*/
 		table {
 			width: 100%;
 			tbody {
-				background-color: rgba(0,0,255,0.5);
 				td {
 					padding: 5px 2px;
 				}
 				// .data-info {
-				// 	background-color: rgba(0,255,0,0.5);
+					// background-color: rgba(0,255,0,0.5);
 				// 	text-align: right;
 				// 	padding: 0px 10px;
 				// }
 				.data-input {
-					background-color: rgba(255,0,0,0.5);
 					text-align: right;
 					text-align: center;
 					#userBirthday{
