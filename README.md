@@ -10,3 +10,13 @@ Notify in case you change any of the id or classes.
 Don't remove handlebars in HBS files ( look like -> {{ name }} ).  
 
 I have not implemented a login , so that's something that needs to be done. Someone work on scss and look.  
+
+#Things to work on
+
+Add a list page, edit it on css
+
+Maybe we should split the css file into multiple? Just a suggestion.
+
+Make login work, and maybe create a quiz thing.
+
+Set up the dictionary, this may be the most important!! Our look up don't work. This needs to be fixed via public/JS/scripts.js (make an ajax call) and via routes/index.js (what the ajax call will be referring to).
