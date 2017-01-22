@@ -135,19 +135,19 @@ body {
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: pink; }
+  color: black; }
 
 ::-moz-placeholder {
   /* Firefox 19+ */
-  color: pink; }
+  color: black; }
 
 :-ms-input-placeholder {
   /* IE 10+ */
-  color: pink; }
+  color: black; }
 
 :-moz-placeholder {
   /* Firefox 18- */
-  color: pink; }
+  color: black; }
 
 /* * * INDEX PAGE * * */
 .header {
