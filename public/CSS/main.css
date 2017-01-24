@@ -64,44 +64,26 @@ body {
         text-align: left !important;
         line-height: 10rem; }
 
-.login-modal {
-  z-index: 2;
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  transition: background 200ms linear;
-  -webkit-transition: background 200ms linear;
-  -moz-transition: background 200ms linear; }
-  .login-modal .login-modal-temp {
-    z-index: 12;
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0; }
-  .login-modal .login-modal-content {
-    background-color: white;
-    padding: 1rem;
-    top: 10rem;
-    z-index: 14; }
-    .login-modal .login-modal-content .login-modal-form input[type=submit] {
+.login {
+  z-index: 14; }
+  .login .login-form {
+    padding: auto 0rem; }
+    .login .login-form input[type=submit] {
       margin-top: 1rem;
       color: black;
       text-align: center;
       background-color: rgba(0, 0, 0, 0.1);
       border: 0px solid rgba(0, 0, 0, 0.5);
-      transition: background-color 200ms;
+      transition: background-color 200ms, border 250ms;
       width: 100%; }
-    .login-modal .login-modal-content .login-modal-form input[type=submit]:hover {
+    .login .login-form input[type=submit]:hover {
       color: white;
-      background-color: rgba(0, 0, 0, 0.4); }
-    .login-modal .login-modal-content .login-modal-form input[type=submit]:focus, .login-modal .login-modal-content .login-modal-form input[type=submit]:active {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-bottom: 5px solid white; }
+    .login .login-form input[type=submit]:focus, .login .login-form input[type=submit]:active {
       color: white;
       background-color: rgba(200, 125, 50, 0.7); }
-    .login-modal .login-modal-content .login-modal-form input[type=text], .login-modal .login-modal-content .login-modal-form input[type=password], .login-modal .login-modal-content .login-modal-form input[type=date], .login-modal .login-modal-content .login-modal-form input[type=email] {
+    .login .login-form input[type=text], .login .login-form input[type=password], .login .login-form input[type=date], .login .login-form input[type=email] {
       margin-top: 1rem;
       text-align: center;
       background-color: rgba(0, 0, 0, 0.1);
@@ -111,43 +93,31 @@ body {
       border-right: 0px solid black;
       transition: background-color 200ms;
       width: 100%; }
-    .login-modal .login-modal-content .login-modal-form input[type=text]:hover, .login-modal .login-modal-content .login-modal-form input[type=password]:hover, .login-modal .login-modal-content .login-modal-form input[type=date]:hover, .login-modal .login-modal-content .login-modal-form input[type=email]:hover, .login-modal .login-modal-content .login-modal-form select:hover, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=text]:hover, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=text]:hover, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=password]:hover, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=password]:hover, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=date]:hover, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=date]:hover, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=submit]:hover, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=submit]:hover, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=email]:hover, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=email]:hover {
+    .login .login-form input[type=text]:hover, .login .login-form input[type=password]:hover, .login .login-form input[type=date]:hover, .login .login-form input[type=email]:hover, .login .login-form select:hover, .login .login-form .sign-up-box .sign-up-form input[type=text]:hover, .sign-up-box .sign-up-form .login .login-form input[type=text]:hover, .login .login-form .sign-up-box .sign-up-form input[type=password]:hover, .sign-up-box .sign-up-form .login .login-form input[type=password]:hover, .login .login-form .sign-up-box .sign-up-form input[type=date]:hover, .sign-up-box .sign-up-form .login .login-form input[type=date]:hover, .login .login-form .sign-up-box .sign-up-form input[type=submit]:hover, .sign-up-box .sign-up-form .login .login-form input[type=submit]:hover, .login .login-form .sign-up-box .sign-up-form input[type=email]:hover, .sign-up-box .sign-up-form .login .login-form input[type=email]:hover {
       color: white;
-      background-color: rgba(0, 0, 0, 0.4); }
-    .login-modal .login-modal-content .login-modal-form input[type=text]:focus, .login-modal .login-modal-content .login-modal-form input[type=password]:focus, .login-modal .login-modal-content .login-modal-form input[type=date]:focus, .login-modal .login-modal-content .login-modal-form input[type=email]:focus, .login-modal .login-modal-content .login-modal-form select:focus, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=text]:focus, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=text]:focus, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=password]:focus, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=password]:focus, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=date]:focus, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=date]:focus, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=submit]:focus, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=submit]:focus, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=email]:focus, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=email]:focus {
-      color: white;
-      background-color: rgba(0, 0, 0, 0.7); }
-    .login-modal .login-modal-content .login-modal-form input[type=text]:active, .login-modal .login-modal-content .login-modal-form input[type=password]:active, .login-modal .login-modal-content .login-modal-form input[type=date]:active, .login-modal .login-modal-content .login-modal-form input[type=email]:active, .login-modal .login-modal-content .login-modal-form select:active, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=text]:active, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=text]:active, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=password]:active, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=password]:active, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=date]:active, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=date]:active, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=submit]:active, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=submit]:active, .login-modal .login-modal-content .login-modal-form .sign-up-box .sign-up-form input[type=email]:active, .sign-up-box .sign-up-form .login-modal .login-modal-content .login-modal-form input[type=email]:active {
+      background-color: rgba(255, 255, 255, 0.3); }
+    .login .login-form input[type=text]:focus, .login .login-form input[type=password]:focus, .login .login-form input[type=date]:focus, .login .login-form input[type=email]:focus, .login .login-form select:focus, .login .login-form .sign-up-box .sign-up-form input[type=text]:focus, .sign-up-box .sign-up-form .login .login-form input[type=text]:focus, .login .login-form .sign-up-box .sign-up-form input[type=password]:focus, .sign-up-box .sign-up-form .login .login-form input[type=password]:focus, .login .login-form .sign-up-box .sign-up-form input[type=date]:focus, .sign-up-box .sign-up-form .login .login-form input[type=date]:focus, .login .login-form .sign-up-box .sign-up-form input[type=submit]:focus, .sign-up-box .sign-up-form .login .login-form input[type=submit]:focus, .login .login-form .sign-up-box .sign-up-form input[type=email]:focus, .sign-up-box .sign-up-form .login .login-form input[type=email]:focus {
       color: white;
       background-color: rgba(0, 0, 0, 0.7); }
-
-.login-click {
-  transition: background-color 200ms, color 200ms;
-  color: white;
-  background-color: black;
-  padding: 0px 10px; }
-
-.login-click:hover {
-  background-color: red; }
-
-.login-click:active {
-  background-color: blue; }
+    .login .login-form input[type=text]:active, .login .login-form input[type=password]:active, .login .login-form input[type=date]:active, .login .login-form input[type=email]:active, .login .login-form select:active, .login .login-form .sign-up-box .sign-up-form input[type=text]:active, .sign-up-box .sign-up-form .login .login-form input[type=text]:active, .login .login-form .sign-up-box .sign-up-form input[type=password]:active, .sign-up-box .sign-up-form .login .login-form input[type=password]:active, .login .login-form .sign-up-box .sign-up-form input[type=date]:active, .sign-up-box .sign-up-form .login .login-form input[type=date]:active, .login .login-form .sign-up-box .sign-up-form input[type=submit]:active, .sign-up-box .sign-up-form .login .login-form input[type=submit]:active, .login .login-form .sign-up-box .sign-up-form input[type=email]:active, .sign-up-box .sign-up-form .login .login-form input[type=email]:active {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7); }
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: black; }
+  color: rgba(0, 0, 0, 0.7); }
 
 ::-moz-placeholder {
   /* Firefox 19+ */
-  color: black; }
+  color: rgba(0, 0, 0, 0.7); }
 
 :-ms-input-placeholder {
   /* IE 10+ */
-  color: black; }
+  color: rgba(0, 0, 0, 0.7); }
 
 :-moz-placeholder {
   /* Firefox 18- */
-  color: black; }
+  color: rgba(0, 0, 0, 0.7); }
 
 /* * * INDEX PAGE * * */
 .header {

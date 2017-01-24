@@ -1,14 +1,13 @@
-var mongoose = require('mongoose'); 
-var Schema = mongoose.Schema;
-var passportLocalMongoose = require('passport-local-mongoose');
-// var bcrypt = require('bcrypt');
-var bcrypt = require('bcryptjs'); //because I can't install bcrypt
-var SALT_WORK_FACTOR = 10;
-
-// TODO: Fill out the userSchema.
-// Hint: a user is an object such as
-//     {'username': 'Isaac', 'favoriteFruit': 'apple'}
-var userSchema = new Schema({
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    passportLocalMongoose = require('passport-local-mongoose');
+// connect to database? WHAT'S THIS?
+// mongoose.connect('mongodb://localhost/auth_test');
+var chalk = require('chalk');
+function pLog(val){
+    console.log(chalk.bgYellow(val));
+}
+var User = new Schema({
 	userName: {type:String, required:true, unique:true},
 	userPassword: {type:String, required:true},
 	userEmail: {type:String, required:true},
@@ -30,16 +29,16 @@ var userSchema = new Schema({
 		id:Number
 	}]
 });
-
-userSchema.plugin(passportLocalMongoose);
-var User = mongoose.model('User', userSchema);
-module.exports = User;
+//-LATER----------------------------------------------------------------------
 /*
-READ THIS TO UNDERSTAND WHAT IS GOING ON NEXT
-http://devsmash.com/blog/password-authentication-with-mongoose-and-bcrypt
-I need to install bcrypt, but "npm install --save bcrypt" does not work?
-*
-UserSchema.pre('save', function(next) {
+// var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs'); //because I can't install bcrypt
+var SALT_WORK_FACTOR = 10;
+
+// READ THIS TO UNDERSTAND WHAT IS GOING ON NEXT
+// http://devsmash.com/blog/password-authentication-with-mongoose-and-bcrypt
+// I need to install bcrypt, but "npm install --save bcrypt" does not work?
+User.pre('save', function(next) {
     var user = this;
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('userPassword')) return next();
@@ -55,15 +54,16 @@ UserSchema.pre('save', function(next) {
         });
     });
 });
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+User.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
 };
-*/
-
-
+/**/
+//-LATER----------------------------------------------------------------------
+User.plugin(passportLocalMongoose);
+module.exports = mongoose.model('User', User);
 
 
 

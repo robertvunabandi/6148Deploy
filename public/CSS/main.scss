@@ -39,84 +39,62 @@ body {background-color: rgba(200,125,50,0.7);}
 		}
 	}
 }
-.login-modal {
-	z-index: 2;
-	display:none;
-	position:fixed; left: 0; top: 0;
-	// background-color: rgba(0,0,0,0.3);
-	width: 100%; height: 100%;
-	transition: background 200ms linear;
-    -webkit-transition: background 200ms linear;
-    -moz-transition: background 200ms linear;
-	.login-modal-temp {
-		z-index: 12; width: 100%; height: 100%;
-		position:fixed; left: 0; top: 0;
-	}
-	.login-modal-content {
-		background-color: white; padding: 1rem;
-		top: 10rem;
-		z-index: 14;
-		.login-modal-form {
-			input[type=submit]{
-				margin-top: 1rem;
-				color: black;
-				text-align: center;
-				background-color: rgba(0,0,0,0.1);
-				border: 0px solid rgba(0,0,0,0.5);
-				transition: background-color 200ms;
-				width: 100%;
-			}
-			input[type=submit]:hover{
-				color: white;
-				background-color: rgba(0,0,0,0.4);
-			}
-			input[type=submit]:focus, input[type=submit]:active {
-				color: white;
-				background-color: rgba(200,125,50,0.7);
-			}
-
-			input[type=text], input[type=password], input[type=date], input[type=email]{
-				margin-top: 1rem;
-				text-align: center;
-				background-color: rgba(0,0,0,0.1);
-				border-bottom: 3px solid rgba(0,0,0,1);
-				border-top: 0px solid rgba(0,0,0,0.4);
-				border-left: 0px solid black;
-				border-right: 0px solid black;
-				transition: background-color 200ms;
-				width: 100%;
-			}
-			input[type=text]:hover, input[type=password]:hover, input[type=date]:hover, input[type=email]:hover, select:hover {
-				color: white;
-				background-color: rgba(0,0,0,0.4);
-			}
-			input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=email]:focus, select:focus {
-				color: white;
-				background-color: rgba(0,0,0,0.7);
-			}
-			input[type=text]:active, input[type=password]:active, input[type=date]:active, input[type=email]:active, select:active {
-				color: white;
-				background-color: rgba(0,0,0,0.7);
-			}
+.login {
+	// background-color: white; padding: 1rem;
+	z-index: 14;
+	.login-form {
+		padding: auto 0rem;
+		input[type=submit]{
+			margin-top: 1rem;
+			color: black;
+			text-align: center;
+			background-color: rgba(0,0,0,0.1);
+			border: 0px solid rgba(0,0,0,0.5);
+			transition: background-color 200ms, border 250ms;
+			width: 100%;
+		}
+		input[type=submit]:hover{
+			color: white;
+			background-color: rgba(255,255,255,0.4);
+			border-bottom: 5px solid white;
+		}
+		input[type=submit]:focus, input[type=submit]:active {
+			color: white;
+			background-color: rgba(200,125,50,0.7);
+		}
+		input[type=text], input[type=password], input[type=date], input[type=email]{
+			margin-top: 1rem;
+			text-align: center;
+			background-color: rgba(0,0,0,0.1);
+			border-bottom: 3px solid rgba(0,0,0,1);
+			border-top: 0px solid rgba(0,0,0,0.4);
+			border-left: 0px solid black;
+			border-right: 0px solid black;
+			transition: background-color 200ms;
+			width: 100%;
+		}
+		input[type=text]:hover, input[type=password]:hover, input[type=date]:hover, input[type=email]:hover, select:hover {
+			color: white;
+			background-color: rgba(255,255,255,0.3);
+		}
+		input[type=text]:focus, input[type=password]:focus, input[type=date]:focus, input[type=email]:focus, select:focus {
+			color: white;
+			background-color: rgba(0,0,0,0.7);
+		}
+		input[type=text]:active, input[type=password]:active, input[type=date]:active, input[type=email]:active, select:active {
+			color: white;
+			background-color: rgba(0,0,0,0.7);
 		}
 	}
 }
-.login-click {
-	transition: background-color 200ms, color 200ms;
-	color: white;
-	background-color: black;
-	padding: 0px 10px;
-}
-.login-click:hover {background-color: red;}
-.login-click:active {background-color: blue;}
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: black;}
+  	color: rgba(0,0,0,0.7);}
 ::-moz-placeholder { /* Firefox 19+ */
-  color: black;}
+  	color: rgba(0,0,0,0.7);}
 :-ms-input-placeholder { /* IE 10+ */
-  color: black;}
+  	color: rgba(0,0,0,0.7);}
 :-moz-placeholder { /* Firefox 18- */
-  color: black;}
+  	color: rgba(0,0,0,0.7);}
 
 /* * * INDEX PAGE * * */
 .header {

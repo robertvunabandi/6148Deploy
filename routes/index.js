@@ -16,9 +16,13 @@ router.get('/', function(req, res, next) {
 	This code is taken from 
 	https://stormpath.com/blog/everything-you-ever-wanted-to-know-about-node-dot-js-sessions
 	*/
+
 	if(req.isAuthenticated()) {
-		res.render("index", {title: req.user.email, logged: true});
+		console.log("YAAAY LOGGED");
+		console.log('Cookies: ', req.cookies);
+		res.render("index", {title: 'LEXIS', logged: true});
 	} else {
+		console.log("NOT LOGGED");
 		res.render("index", {title: 'LEXIS | Home Page', logged: false});
 	}
 	/*
@@ -47,9 +51,13 @@ router.get('/', function(req, res, next) {
 });
 /* GET sign-up page. */
 router.get('/signup', function(req, res, next) {
-  res.render('signup', {title: 'LEXIS | Sign-up'});
+	res.render('signup', {title: 'LEXIS | Sign-up'});
 });
-/* ACTION FOR SIGN UP!*/
+/* GET login page. */
+router.get('/login', function(req, res, next){
+	res.render('login', {title: 'Lexis | Log-in', error:false});
+});
+/* ACTION FOR SIGN UP */
 router.post('/userSignup', function(req, res, next){
 	var userName = req.body.userName.toLowerCase();
 	var userPassword = req.body.userPassword;
@@ -64,44 +72,52 @@ router.post('/userSignup', function(req, res, next){
 		userEmail: userEmail,
 		userBirthday: userBirthday
 	});
-	
-	User.findOne({userName:user.userName}, function (err, user){
+	pLog("SO GOOD SO FAR 4");
+	User.findOne({userName:user.userName}, function (err, userSearch){
 		if (err){
 			res.send("please try again.");
-		} else if (user){
+		} else if (userSearch){
 			res.send("user already exists");
 		} else {
 			pLog("Username successful");
+			User.findOne({userEmail:user.userEmail}, function (err, userSearch){
+				if (err){
+					res.send("please try again.");
+				} else if (userSearch){
+					res.send("email already taken.");
+				} else {
+					pLog("Email successful");
+					user.save(function(err){
+						if (err){pLog("ERR:"+err);}
+						else {pLog("New User: "+userName);}
+					});
+					user.save();
+				}
+			});
 		}
 	});
-	User.findOne({userEmail:user.userEmail}, function (err, user){
-		if (err){
-			res.send("please try again.");
-		} else if (user){
-			res.send("user already exists");
-		} else {
-			pLog("Email successful");
-		}
-	});
-	var message = chalk.underline.bgYellow("New User:"+userName);
-	console.log(user);
-	console.log(message);
-	user.save();
-	// Redirecting back to the root
+	
 	res.redirect('/');
-});
+});/**/
 function parseMonth(val){
 	var months = ["january","february","march","april","may","june","july","august","september","october","november","december"];
 	return (months.indexOf(val.toLowerCase())+1);
 }
+/* ACTION FOR LOGIN */
+router.post('/userLogin', passport.authenticate('local', {
+	successRedirect: '/',
+	failureRedirect: '/login',
+	failureFlash: false
+	})
+);
 
-/* GET login. */
-router.post('/login', passport.authenticate('local', 
+/* ACTION FOR LOGIN *
+router.post('/userLogin', passport.authenticate('local', 
 		{
 		successRedirect: '/',
 		failureRedirect: '/signup',
 		failureFlash: false
-	})
+	});
 	//function(req, res, next){
 	/*if(req.isAuthenticated()) {
 		res.redirect('/');
@@ -146,8 +162,8 @@ router.post('/login', passport.authenticate('local',
 			}
 		});
 	}
-	/**/
-);
+	
+);/**/
 
 /* GET user list. */
 router.get('/lists', function(req, res, next) {
