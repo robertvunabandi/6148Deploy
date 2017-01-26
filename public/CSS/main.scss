@@ -39,6 +39,13 @@ body {background-color: rgba(200,125,50,0.7);}
 		}
 	}
 }
+.error-message {
+	color:rgba(90,50,20,1); 
+	text-align: center; 
+	margin-top: 1rem; 
+	font-weight: bold; 
+	line-height: 1.5rem;
+}
 .login {
 	// background-color: white; padding: 1rem;
 	z-index: 14;
@@ -87,14 +94,10 @@ body {background-color: rgba(200,125,50,0.7);}
 		}
 	}
 }
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  	color: rgba(0,0,0,0.7);}
-::-moz-placeholder { /* Firefox 19+ */
-  	color: rgba(0,0,0,0.7);}
-:-ms-input-placeholder { /* IE 10+ */
-  	color: rgba(0,0,0,0.7);}
-:-moz-placeholder { /* Firefox 18- */
-  	color: rgba(0,0,0,0.7);}
+::-webkit-input-placeholder {color: rgba(255,255,255,0.6) !important;}
+::-moz-placeholder {color: rgba(255,255,255,0.6) !important;}
+:-ms-input-placeholder {color: rgba(255,255,255,0.6) !important;}
+:-moz-placeholder {color: rgba(255,255,255,0.6) !important;}
 
 /* * * INDEX PAGE * * */
 .header {
@@ -104,37 +107,22 @@ body {background-color: rgba(200,125,50,0.7);}
 .global {
 	.search {
 		padding: 1rem;
-		background-color: rgba(0,0,0,0.5);
 		.search-word-input {
-			/* Small devices (tablets, 769px and down) * /
-			@media (max-width: 769px) {
-				font-size: 6rem;
-			}
-			
-			/* Medium devices (desktops, 769px and up) * /
-			@media (min-width: 769px) {
-				font-size: 5rem;
-			}
-			
-			/* Large devices (large desktops, 1200px and up) * /
-			@media (min-width: 1200px) {
-				font-size: 5rem;
-			}*/
-			background-color: rgba(255,255,255,0.2);
+			background-color: rgba(255,255,255,0);
 			border-bottom: 3px solid rgba(255,255,255,1);
 			border-top: 0px solid black;
 			border-left: 0px solid black;
 			border-right: 0px solid black;
 			display: block;
-			font-size: 4rem; text-align: center;
+			font-size: 4rem; font-weight: bold; color: white !important; text-align: center;
 			width: 100%;
-			transition: background-color 200ms, color 200ms;
+			transition: background-color 350ms, color 250ms;
 		}
 		.search-word-input:hover {
-			background-color: rgba(255,255,255,0.7);
+			background-color: rgba(255,255,255,0.4);
 		}
 		.search-word-input:active, .search-word-input:focus {
-			background-color: rgba(0,0,0,0.8);
+			background-color: rgba(0,0,0,0.5);
 			color: white;
 		}
 		.result-word {
@@ -155,8 +143,18 @@ body {background-color: rgba(200,125,50,0.7);}
 			}
 			.add-word {
 				position: fixed;
-				background-color: blue;
-				padding: 1rem 2rem;
+				padding: 1rem 1rem 0rem 0rem;
+				float: left !important;
+				.add-word-svg {width: 4rem; stroke-width:2;}
+				.st0 {stroke: black; stroke-width:2; stroke-linecap:round;}
+				.add-word-svg, .st0 {transition: fill 150ms, stroke 150ms, stroke-width 200ms;}
+				.add-word-svg:hover {
+					//this is cool. .st0 is embedded in hover of it's block
+					fill: red;
+					stroke-width: 5;
+					.st0 {stroke: red; stroke-width:4;}
+				}
+				
 			}
 		}
 	}

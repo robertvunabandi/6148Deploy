@@ -92,7 +92,9 @@ function displayWord(word){
 	This is the function that will display the word that it received from the database. 
 	Assume the word is received, this is how the format will form it.
 	*/
-	var name = word.name, def = word.definition, append = "<span class='add-word'>+</span>";
+	// var svg = '<img src="./images/add.svg" class="add-word-svg" alt="add this word">';
+	var svg = '<?xml version="1.0" encoding="utf-8"?><!-- Generator: Adobe Illustrator 21.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version="1.1" class="add-word-svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><g><path d="M25,2c12.7,0,23,10.3,23,23S37.7,48,25,48S2,37.7,2,25S12.3,2,25,2 M25,0C11.2,0,0,11.2,0,25s11.2,25,25,25s25-11.2,25-25S38.8,0,25,0L25,0z"/></g><line class="st0" x1="25" y1="5" x2="25" y2="45"/><line class="st0" x1="5" y1="25" x2="45" y2="25"/></svg>';
+	var name = word.name, def = word.definition, append = "<span class='add-word'>"+svg+"</span>";
 	append += "<h3>"+name+"</h3>";
 	for (x in def){append += "<p>"+def[x]+"</p>";}
 	$(".result-word").html(append);

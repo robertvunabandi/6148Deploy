@@ -7,8 +7,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!-- Link animate.css -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-	<!-- Link w3.css -->
-	{{!-- <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"> --}}
 	<!-- Link CSS/main.css -->
 	<link rel="stylesheet" type="text/css" href="/CSS/main.css">
 	<!-- Link font from Google API -->
@@ -25,15 +23,15 @@
 <body>
 	{{> navbar}}
 	<div class="col-xs-10 col-md-6 col-lg-4 col-xs-offset-1 col-md-offset-3 col-lg-offset-4 login">
-	<form name="login" method="post" action="/login" class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 login-form">
+	<form name="login" method="post" action="/userLogin" class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 login-form">
 		<h3>Log In to Lexis</h3>
 		{{#if error}}
-		<span class="col-xs-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 wobble animated" style="color:rgba(80,40,0,1); text-align: center; margin-top: 1rem; font-weight: bold; line-height: 1.5rem;">Username or password incorrect</span>
+		<span class="col-xs-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 error-message wobble animated">Username or password incorrect</span>
 		{{/if}}
 		{{!-- <label for="userInf">Username or email:</label><br> --}}
-		<input type="text" name="userInf" id="userInf" placeholder="Username or Email"><br>
+		<input type="text" name="username" id="userInf" placeholder="Username"><br>
 		{{!-- <label for="userPassword">Password:</label><br> --}}
-		<input type="password" name="userPassword" id="userPassword" minlength="2" maxlength=	"25" placeholder="Password"><br>
+		<input type="password" name="password" id="userPassword" minlength="2" maxlength=	"25" placeholder="Password"><br>
 		<input type="submit" name="login-submit" class="login-submit" value="Login">
 		<p id="onIncorrect"></p>
 		<a href="/signup">Forgot your password or username?</a>

@@ -4,9 +4,9 @@ $(document).ready(function(){
 	$("#nav-log-in").click(function(){
 		// Changed!
 	});
-	$(".login-click").click(function(){
+	// $(".login-click").click(function(){
 		// Changed!
-	});
+	// });
 	$("#nav-sign-up").click(function(){
 		// Lead to sign up page
 		// NEEDS TO BE FINISHED

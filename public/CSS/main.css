@@ -64,6 +64,13 @@ body {
         text-align: left !important;
         line-height: 10rem; }
 
+.error-message {
+  color: #5a3214;
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+  line-height: 1.5rem; }
+
 .login {
   z-index: 14; }
   .login .login-form {
@@ -104,57 +111,40 @@ body {
       background-color: rgba(0, 0, 0, 0.7); }
 
 ::-webkit-input-placeholder {
-  /* Chrome/Opera/Safari */
-  color: rgba(0, 0, 0, 0.7); }
+  color: rgba(255, 255, 255, 0.6) !important; }
 
 ::-moz-placeholder {
-  /* Firefox 19+ */
-  color: rgba(0, 0, 0, 0.7); }
+  color: rgba(255, 255, 255, 0.6) !important; }
 
 :-ms-input-placeholder {
-  /* IE 10+ */
-  color: rgba(0, 0, 0, 0.7); }
+  color: rgba(255, 255, 255, 0.6) !important; }
 
 :-moz-placeholder {
-  /* Firefox 18- */
-  color: rgba(0, 0, 0, 0.7); }
+  color: rgba(255, 255, 255, 0.6) !important; }
 
 /* * * INDEX PAGE * * */
 .header {
   min-height: 10rem; }
 
 .global .search {
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.5); }
+  padding: 1rem; }
   .global .search .search-word-input {
-    /* Small devices (tablets, 769px and down) * /
-    @media (max-width: 769px) {
-    	font-size: 6rem;
-    }
-    
-    /* Medium devices (desktops, 769px and up) * /
-    @media (min-width: 769px) {
-    	font-size: 5rem;
-    }
-    
-    /* Large devices (large desktops, 1200px and up) * /
-    @media (min-width: 1200px) {
-    	font-size: 5rem;
-    }*/
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0);
     border-bottom: 3px solid white;
     border-top: 0px solid black;
     border-left: 0px solid black;
     border-right: 0px solid black;
     display: block;
     font-size: 4rem;
+    font-weight: bold;
+    color: white !important;
     text-align: center;
     width: 100%;
-    transition: background-color 200ms, color 200ms; }
+    transition: background-color 350ms, color 250ms; }
   .global .search .search-word-input:hover {
-    background-color: rgba(255, 255, 255, 0.7); }
+    background-color: rgba(255, 255, 255, 0.4); }
   .global .search .search-word-input:active, .global .search .search-word-input:focus {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white; }
   .global .search .result-word {
     display: none;
@@ -172,8 +162,23 @@ body {
       padding: 0.5rem; }
     .global .search .result-word .add-word {
       position: fixed;
-      background-color: blue;
-      padding: 1rem 2rem; }
+      padding: 1rem 1rem 0rem 0rem;
+      float: left !important; }
+      .global .search .result-word .add-word .add-word-svg {
+        width: 4rem;
+        stroke-width: 2; }
+      .global .search .result-word .add-word .st0 {
+        stroke: black;
+        stroke-width: 2;
+        stroke-linecap: round; }
+      .global .search .result-word .add-word .add-word-svg, .global .search .result-word .add-word .st0 {
+        transition: fill 150ms, stroke 150ms, stroke-width 200ms; }
+      .global .search .result-word .add-word .add-word-svg:hover {
+        fill: red;
+        stroke-width: 5; }
+        .global .search .result-word .add-word .add-word-svg:hover .st0 {
+          stroke: red;
+          stroke-width: 4; }
 
 /* * * SIGN-UP PAGE * * */
 .sign-up-box {
