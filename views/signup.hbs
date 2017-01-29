@@ -24,16 +24,13 @@
 </head>
 <body>
 	{{> navbar}}
+	<br><br>
 	<div class="container-fluid sign-up-box">
 	<form name="sign-up" method="post" action="/userSignup" class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 sign-up-form" >
 		<h4>Create a Lexis account</h4>
 		<table>
 		<tbody>
-			{{#if error}}
-			<tr>
-			<span class="col-xs-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 error-message wobble animated">An error occurred. Please try again.</span>
-			</tr>
-			{{/if}}
+			<tr>{{#if error}}<span class="col-xs-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 error-message wobble animated">An error occurred. Please try again.</span>{{/if}}</tr>
 			<tr>
 				<td class="data-input" id="userBirthday">
 				</td>
@@ -41,30 +38,25 @@
 			<tr>
 				<td class="data-input"><input type="text" name="userName" autocomplete='off' pattern="[\w]+" oninvalid="setCustomValidity('Use only the characters in the alphabets, numbers, or \'_\'. Thanks.\');" placeholder="set a Username" required></td>
 			</tr>
-			{{#if usererror}}
-			<tr>
-			<span class="col-xs-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 error-message wobble animated">Username already exists</span>
-			</tr>
-			{{/if}}
+			<tr>{{#if usererror}}<span class="col-xs-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 error-message wobble animated">username already exists</span>{{/if}}</tr>
 			<tr>
 				<td class="data-input"><input type="email" name="userEmail" autocomplete='off' placeholder="type your Email" required></td>
 			</tr>
-			{{#if emailerror}}
+			<tr>{{#if emailerror}}<span class="col-xs-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 error-message wobble animated">email already taken</span>{{/if}}</tr>
 			<tr>
-			<span class="col-xs-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 error-message wobble animated">Email already taken</span>
-			</tr>
-			{{/if}}
-			<tr>
+				
 				<td class="data-input"><input type="password" name="userPassword" maxlength="25" autocomplete='off' pattern="[\w|\W]{8,25}" oninvalid="setCustomValidity('Use at least 8 characters and at most 25 characters. Click here to dismiss.');" onchange="setCustomValidity('');" placeholder="set a Password" required></td>
+				
 			</tr>
+			<tr>{{#if passworderror}}<span class="col-xs-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 error-message wobble animated">that password is not allowed</span>{{/if}}</tr>
 			<tr>
-				<td class="agree-section"><input type="checkbox" name="agree-terms" autocomplete='off' required> I agree with Lexis' <a>Terms of Services</a>
+				<td class="agree-section"><input type="checkbox" name="agree-terms" autocomplete='off' required> I agree with Lexis' <a class="terms">Terms of Services</a>
 				</td>
 			</tr>
 		<tbody>
 		</table>
 		<input type="submit" name="sign-up-submit" class="sign-up-submit" value="Sign Up!">
-		<p>Do you already have an account? <span class="login-click"> Login </span></p>
+		<p>Do you already have an account?<span class="login-click"> Login </span></p>
 	</form>
 	</div>
 </body>

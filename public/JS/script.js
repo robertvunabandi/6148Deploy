@@ -1,6 +1,6 @@
 var addWordLeft;
 $(document).ready(function(){
-	console.log('Ready');
+	console.log('%cReady','background-color: black; color: white; font-weight: bold;');
 	/*This positions the add-word to be on the right place*/
 	addWordReposition(); $(window).resize(function(){addWordReposition();});
 	/*This displays that message in case someone doesn't input a required field*/
@@ -30,32 +30,68 @@ $(document).ready(function(){
 			//reposition the .add-word
 			addWordReposition();
 		}, 20);
-	});
-
-	/*Add word to a user's list*/
-	$(".add-word").click(function(){
-		if (logged){
-			$.ajax({
-				url: "/add-word",
-				type: "POST",
-				async: false,
-				success: function(){},
-				error: function (xhr, status, error){},
+		setTimeout(function(){
+			addword();
+		}, 30);
+		setTimeout(function(){
+			$("#result-word-fetch").click(function(){
+				$("#result-word-fetch").css("display", "none");
 			});
-		} else {
-			//Open a page to sign in or log in.
-			//Case login: Open a pop up box, and link that to a modal box to log in
-			//Case sign-up: Open a pop up box, and link that to the a sign up page. Make to save word behind.
-		}
+		}, 40);
 	});
-	
+	/*Add word to a user's list*/
+	// $(".add-word").click(function(){console.log("YES")})
 });
+
+function addword(){
+	$(".add-word").click(function(){
+		var word = $("#result-word-value").html();
+		$.ajax({
+			url: "/add-word",
+			type: "POST",
+			data: {word: word},
+			async: false,
+			success: function(data){
+				//success:true means we retrieved the word from dict.
+				$("#result-word-fetch").css("opacity", "0");
+				$("#result-word-fetch").css("display", "block");
+				$("#result-word-fetch").html(data.message);
+				$("#result-word-fetch").fadeTo(100, 0.5, function(){
+					$("#result-word-fetch").css("opacity", "1");
+				});
+				resultWordFetchReposition();
+				// console.log(data.message);
+			},
+			error: function (xhr, status, error){
+				console.log("ERROR:", error)
+			},
+		});
+		//Open a page to sign in or log in.
+		//Case login: Open a pop up box, and link that to a modal box to log in
+		//Case sign-up: Open a pop up box, and link that to the a sign up page. Make to save word behind.
+	});
+}
+function resultWordFetchReposition(){
+	var change = 0;
+	var objWidth = $(".result-word").width() - change;
+	var objOffset = $(".result-word").offset().left + (change/2);
+	var objHeight = $(".result-word").height();
+	var previousHeight = $("#result-word-fetch").height();
+	var objChildHeight = (objHeight - previousHeight)/2;
+	// console.log("Fixed width", change, objWidth, objOffset);
+	$("#result-word-fetch").css("left", objOffset);
+	$("#result-word-fetch").css("width", objWidth);
+	$("#result-word-fetch").css("height", objHeight);
+	// document.getElementById("result-word-fetch").firstChild.style.top = objChildHeight+"px";
+	// setTimeout(function(){$("#result-word-fetch:first-child").css("top", objChildHeight);}, 100);
+	
+}
 
 function addWordReposition(){
 	/*This positions the add-word to be on the right place*/
 	var addWordWidth = Math.round(parseInt($(".add-word").css("padding-left")) + parseInt($(".add-word").css("padding-right")) + parseInt($(".add-word").width()));
 	var resultWidth = $(".result-word").offset().left + $(".result-word").width();
-	console.log(resultWidth, addWordWidth);
+	// console.log(resultWidth, addWordWidth);
 	addWordLeft = resultWidth - addWordWidth;
 	// console.log(addWordLeft);
 	$(".add-word").css("left", addWordLeft);
@@ -68,9 +104,7 @@ function searchQuery(val){
 		var errorMessage = "Please, use only letters in the alphabet. No numbers nor characters are allowed. Thank you.";
 		$(".result-word").html(errorMessage);
 	} else {
-		// console.log("Value is ("+val+")");
-		var test = {name: "Cry", definition:["shed tears, especially as an expression of distress or pain","shout or scream, especially to express one's fear, pain, or grief","(of a bird or other animal) make a loud characteristic call"]};
-		displayWord(test);
+		$(".result-word").html(displayWord(val));
 		/*$.ajax({
 			url: "/search-word",
 			type: "GET",
@@ -87,15 +121,15 @@ function searchQuery(val){
 
 function displayWord(word){
 	/*
-	Let's assume that word is a json file with keys: name, definition 
+	word is a json file.
 	(ideally, we want more, like type, examples of usage, etc, but this is good).
 	This is the function that will display the word that it received from the database. 
 	Assume the word is received, this is how the format will form it.
 	*/
 	// var svg = '<img src="./images/add.svg" class="add-word-svg" alt="add this word">';
 	var svg = '<?xml version="1.0" encoding="utf-8"?><!-- Generator: Adobe Illustrator 21.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version="1.1" class="add-word-svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><g><path d="M25,2c12.7,0,23,10.3,23,23S37.7,48,25,48S2,37.7,2,25S12.3,2,25,2 M25,0C11.2,0,0,11.2,0,25s11.2,25,25,25s25-11.2,25-25S38.8,0,25,0L25,0z"/></g><line class="st0" x1="25" y1="5" x2="25" y2="45"/><line class="st0" x1="5" y1="25" x2="45" y2="25"/></svg>';
-	var name = word.name, def = word.definition, append = "<span class='add-word'>"+svg+"</span>";
-	append += "<h3>"+name+"</h3>";
-	for (x in def){append += "<p>"+def[x]+"</p>";}
-	$(".result-word").html(append);
+	var name = word, append = "<span class='add-word'>"+svg+"</span>";
+	append += "<div id='result-word-fetch' style='display:none;'>"+name+"</div>";
+	append += "<h3 id='result-word-value'>"+name+"</h3>";
+	return append;
 }

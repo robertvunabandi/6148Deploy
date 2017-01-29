@@ -10,7 +10,7 @@ function pLog(val){
 var User = new Schema({
 	username: {type:String, required:true, unique:true},
 	// userPassword: {type:String, required:true},
-	email: {type:String, required:true},
+	email: {type:String, required:true, unique:true},
 	userBirthday: {type:String, required:true},
 	userActivity: [String],
     userFolders: [{
@@ -26,7 +26,8 @@ var User = new Schema({
 	}],
 	userWords: [{
 		word:String,
-		id:Number
+		id:Number,
+		definition:String,
 	}]
 });
 User.plugin(passportLocalMongoose);
