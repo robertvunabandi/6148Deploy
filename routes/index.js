@@ -4,6 +4,7 @@ var User = require('../schemas/user.js');
 var router = express.Router();
 var chalk = require('chalk');
 var sanitize = require('mongo-sanitize');
+
 function pLog(something, color){
 	var message;
 	switch (color){
@@ -143,9 +144,9 @@ router.get('/userWords', function(req, res, next) {
 	if (req.isAuthenticated){res.render('userWords', {title: 'LEXIS | My words', logged: true, underlineWords: true});}
 	else (res.redirect('/'));
 });
-/* GET user actual words. */
+/* GET the user's actual words from database. */
 router.post('/words', function(req, res, next) {
-	var message = {error: false, data:[]};
+	var message = {error:false, data:[]};
 	if (req.isAuthenticated){
 		message.error = false;
 		User.findOne({username:req.user.username}, function (err, user){
@@ -161,10 +162,13 @@ router.post('/words', function(req, res, next) {
 			}
 			else {
 				var words = [];
+				var definitions = [];
 				for (var x = 0; x < index; x++){
 					words.push(user.userWords[x].word);
+					definitions.push(user.userWords[x].definition);
 				}
 				message.data = words;
+				message.definitions = definitions;
 				return res.send(message);
 			}
 		});
@@ -179,10 +183,10 @@ router.post('/saveDefinition', function(req, res, next){
 	var message = {success: false, data:""};
 	var word = req.body.word, definition = req.body.def;
 	if(req.isAuthenticated()) {
-		message.success = false;
+		message.success = true;
 		User.findOne({username:req.user.username}, function (err, user){
 			if (err){
-				message.success = true;
+				message.success = false;
 				message.data.push("An error occured when processing your username in the server.");
 				return res.send(message);
 			}
@@ -213,12 +217,25 @@ router.get('/aboutUs', function(req, res, next) {
   res.render('aboutUs', {title: 'LEXIS | Who We Are'});
 });
 /*GET search-word page. */
-router.get('/search-word', function(req, res, next){});
+var lookup = require('../lookup.js');
+router.get('/search-word', function(req, res, next){
+	var word = req.query.word;
+	// pLog(word, "red");
+	lookup(word, function(error, response, body){
+		if (!error && response.statusCode == 200){
+			var jsonDump = JSON.parse(body);
+			// console.log(jsonDump);
+			res.send(jsonDump);
+		} else if (error) {
+			console.log(error);
+		}
+	})
+});
 /*POST add-word page. */
 router.post('/add-word', function(req, res, next){
 	var message;
 	if(req.isAuthenticated()) {
-		var word = req.body.word.toLowerCase();
+		var word = req.body.word.toLowerCase(); 
 		pLog(word);
 		// pLog(req.user.useWords);
 		User.findOne({username: req.user.username}, function (err, user){
@@ -226,7 +243,7 @@ router.post('/add-word', function(req, res, next){
 			user.userWords[index] = {word: word, id: index};
 			user.save();
 		});
-		message = {success:true, message:"<h5><span style='color: rgba(222,204,145,1);'>"+word+"</span> is now in your words</h5>"};
+		message = {success:true, message:"<div style='font-size: 3rem;'><span style='color: rgba(222,204,145,1); font-size: 3rem;'>"+word+"</span> is now in your words</div>"};
 	}
 	else {
 		message = {success:false, message:"<h5>sign up or log in to add a new word</h5>"};

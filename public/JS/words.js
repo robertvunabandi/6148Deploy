@@ -21,13 +21,59 @@ $(document).ready(function(){
 			type: 'POST',
 			async: false,
 			success: function (data){
-				if (data.success == false){console.log("ERROR OCCURED:", data.data)}
-				else console.log("DEFINITION SAVED:", data);
+				if (data.success == false){console.log("ERROR OCCURED:", data.data);}
+				else console.log("DEFINITION SAVED. RESPONSE:", data);
 			},
 			error: function (xhr, status, error){
 			console.log("ERROR FROM SERVER:", error);
 			}
 		})
+	});
+	// Find the toggles and hide their content
+	$('.toggle').each(function(){
+		$(this).find('.toggle-content').hide();
+	});
+
+	// When a toggle is clicked (activated) show their content
+	$('.toggle a.toggle-trigger').click(function(){
+		var el = $(this), parent = el.closest('.toggle');
+
+		if( el.hasClass('active') )
+		{
+			parent.find('.toggle-content').slideToggle();
+			el.removeClass('active');
+		}
+		else
+		{
+			parent.find('.toggle-content').slideToggle();
+			el.addClass('active');
+		}
+		return false;
+	});
+	$(".word").click(function(){
+		var wordID = this.id;
+		var parentID = wordID.replace(/\+/, "")+"_BOX";
+		var wordTextAreaID = wordID.replace(/\+/, "")+"ID_";
+		var wordLKPID = wordID.replace(/\+/, "")+"_LKP";
+		var word = wordID.replace(/\+/, "");
+		if ($("#"+wordLKPID).is(':visible') == false){
+			$.ajax({
+				url:"/search-word",
+				data: {word: word},
+				type: "GET",
+				async: false,
+				success: function (dataReceived){
+					currentOxford = dataReceived;
+					console.log(dataReceived);
+					$("#"+wordLKPID).html("NOT IMPLEMENTED");
+					$("#"+wordLKPID).slideToggle();
+				},
+				error: function (xhr, status, error){
+					$("#"+wordLKPID).html("ERROR OCCURED");
+					$("#"+wordLKPID).slideToggle();
+				}
+			});
+		} else {$("#"+wordLKPID).slideToggle();}
 	});
 });
 function words(){
@@ -42,10 +88,10 @@ function words(){
 				$(".words").html("<p>"+data.data+"</p>");}
 			else {
 				console.log("%cYES", "color: green; font-weight: bold;");
-				// console.log(data);
+				console.log(data);
 				var append = "";
 				append += makeQuizBar();
-				append += displayWords(filterDuplicates(data.data));
+				append += displayWords(filterDuplicates(data.data), data.definitions);
 				append += makeWordGuides();
 				currentWords = filterDuplicates(data.data);
 				$(".words").html(append);
@@ -67,7 +113,7 @@ function makeQuizBar(){
 	append += "</div>";
 	return append;
 }
-function displayWords(array){
+function displayWords(array, definitions){
 	/*return an HTML ready list of words in the array*/
 	var append = "", listLength = array.length;
 	var input = "";
@@ -76,9 +122,13 @@ function displayWords(array){
 	//
 	if (array[0]== "You have not saved any word yet.") {append += "<span class='word'>"+array[0]+"</span><br>";}
 	else for (var x = 0; x < listLength; x++){
-		input = "<input type='submit' value='save definition' class='word-input-definition-submit' id='"+array[x]+"ID' ><textarea type='text' class='word-input-definition' id='"+array[x]+"ID_'></textarea>";
+		append += "<div class='container-fluid' id='"+array[x]+"_BOX'>";
+		if (definitions[x] == null) input = "<input type='submit' value='save definition' class='word-input-definition-submit' id='"+array[x]+"ID' ><textarea type='text' class='word-input-definition' id='"+array[x]+"ID_'></textarea>";
+		else input = "<input type='submit' value='save definition' class='word-input-definition-submit' id='"+array[x]+"ID' ><textarea type='text' class='word-input-definition' id='"+array[x]+"ID_'>"+definitions[x]+"</textarea>";
 		// if (x == listLength - 1) append += "<span class='word last'>"+array[x]+"</span>"+input+"<br>";
-		append += "<span class='word'>"+array[x]+"</span>"+input+"<br>";
+		append += "<span class='word' id='"+array[x]+"+'>"+array[x]+"</span>"+input+"<br>";
+		append += "</div>";
+		append += "<div class='container-fluid word-BOX-LKP' id='"+array[x]+"_LKP' style='display:none;'></div>";
 	}
 	//
 	append += "</div>";

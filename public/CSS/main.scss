@@ -305,6 +305,7 @@ body {background-color: rgba(17,35,65,1);}
 
 /* * * * WORDS PAGE * * * */
 .words {
+	*:focus {outline:none;}
 	.background {background-color: white; box-shadow: 0px 0px 10px rgba(0,0,0,0.25);}
 	div + div {
 		margin: 0.5rem 0rem 0.5rem 0rem;
@@ -336,7 +337,7 @@ body {background-color: rgba(17,35,65,1);}
 	}
 	.words-box {
 		@extend .background;
-		padding: 1rem auto 1rem auto;
+		padding: 1rem 0rem 1rem 0rem;
 		.word {
 			display: inline-block;
 			padding: 0.1rem 1rem 0rem 1rem;
@@ -344,9 +345,16 @@ body {background-color: rgba(17,35,65,1);}
 			background-color: rgba(0,0,0,0.1);
 			text-align: left !important;
 			font-size: 2rem; font-weight: bold;
+			transition: background-color 200ms;
 		}
 		.word::first-letter {
 			text-transform: uppercase;
+		}
+		.word:hover {
+			background-color: rgba(234,222,184,0.5);
+		}
+		.word:active {
+			background-color: rgba(234,222,184,1);
 		}
 		.last {
 			margin: 1rem 0rem 1rem 0rem;
@@ -386,6 +394,10 @@ body {background-color: rgba(17,35,65,1);}
 			background: linear-gradient(to top, rgba(222,204,145,0.59) 0%,rgba(150,135,97,0) 30%,rgba(25,13,13,0) 44%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96decc91', endColorstr='#00190d0d',GradientType=0 ); /* IE6-9 */
 			border-bottom: 3px solid rgba(199,168,67,1);
+		}
+		.word-BOX-LKP {
+			background-color: rgba(209,97,97,1) !important;
+			box-shadow: inset 0px 0px 1rem rgba(0,0,0,0.9);
 		}
 	}
 	.words-guides {

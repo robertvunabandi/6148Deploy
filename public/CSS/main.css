@@ -336,6 +336,8 @@ body {
         text-align: center; }
 
 /* * * * WORDS PAGE * * * */
+.words *:focus {
+  outline: none; }
 .words .background, .words .quiz-box div, .words .words-box, .words .words-guides:hover {
   background-color: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); }
@@ -361,7 +363,7 @@ body {
     text-shadow: 1px 1px rgba(255, 255, 255, 0.6), -1px -1px rgba(255, 255, 255, 0.3), 0 0 1.25rem white;
     color: #323232; }
 .words .words-box {
-  padding: 1rem auto 1rem auto; }
+  padding: 1rem 0rem 1rem 0rem; }
   .words .words-box .word {
     display: inline-block;
     padding: 0.1rem 1rem 0rem 1rem;
@@ -369,9 +371,14 @@ body {
     background-color: rgba(0, 0, 0, 0.1);
     text-align: left !important;
     font-size: 2rem;
-    font-weight: bold; }
+    font-weight: bold;
+    transition: background-color 200ms; }
   .words .words-box .word::first-letter {
     text-transform: uppercase; }
+  .words .words-box .word:hover {
+    background-color: rgba(234, 222, 184, 0.5); }
+  .words .words-box .word:active {
+    background-color: #eadeb8; }
   .words .words-box .last {
     margin: 1rem 0rem 1rem 0rem; }
   .words .words-box .word-input-definition-submit {
@@ -414,6 +421,9 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96decc91', endColorstr='#00190d0d',GradientType=0 );
     /* IE6-9 */
     border-bottom: 3px solid #c7a843; }
+  .words .words-box .word-BOX-LKP {
+    background-color: #d16161 !important;
+    box-shadow: inset 0px 0px 1rem rgba(0, 0, 0, 0.9); }
 .words .words-guides {
   background-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);

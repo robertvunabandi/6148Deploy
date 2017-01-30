@@ -27,7 +27,7 @@ var User = new Schema({
 	userWords: [{
 		word:String,
 		id:Number,
-		definition:String,
+		definition:String
 	}]
 });
 User.plugin(passportLocalMongoose);

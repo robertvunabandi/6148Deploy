@@ -1,4 +1,5 @@
 var addWordLeft;
+var currentOxford;
 $(document).ready(function(){
 	console.log('%cReady','background-color: black; color: white; font-weight: bold;');
 	/*This positions the add-word to be on the right place*/
@@ -66,9 +67,6 @@ function addword(){
 				console.log("ERROR:", error)
 			},
 		});
-		//Open a page to sign in or log in.
-		//Case login: Open a pop up box, and link that to a modal box to log in
-		//Case sign-up: Open a pop up box, and link that to the a sign up page. Make to save word behind.
 	});
 }
 function resultWordFetchReposition(){
@@ -105,17 +103,20 @@ function searchQuery(val){
 		$(".result-word").html(errorMessage);
 	} else {
 		$(".result-word").html(displayWord(val));
-		/*$.ajax({
+		$.ajax({
 			url: "/search-word",
+			data: {word: val},
 			type: "GET",
 			async: false,
 			success: function (dataReceived){
-				displayWord(dataReceived);
+				// displayWord(dataReceived);
+				currentOxford = dataReceived;
+				console.log(dataReceived);
 			},
 			error: function (xhr, status, error){
 				$(".result-word").html("<h3>ERROR</h3>An error occurred from our server. <br><b>"+error+"</b>");
 			}
-		});*/
+		});
 	}
 }
 
