@@ -1,4 +1,4 @@
-lsvar request = require('request');
+var request = require('request');
 
 var app_id = '52c86221';
 var app_key = '5b10a7864c852347235ef808c96a2413';
