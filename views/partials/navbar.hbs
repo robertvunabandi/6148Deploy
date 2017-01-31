@@ -1,15 +1,15 @@
 <div class="container-fluid navbar-partial">
 	{{#if logged}}
 	<ul>
-		<li class="col-xs-6 col-md-8 {{#if underlineLexis}}underline{{/if}}"><a href="/"><h2 class="col-md-10 col-md-offset-2">Lexis</h2></a></li>
-		<li class="col-xs-3 col-md-2 {{#if underlineWords}}underline{{/if}}" id="nav-profile"><a href="/userWords">My words</a></li>
-		<li class="col-xs-3 col-md-2 {{#if underlineLogout}}underline{{/if}}" id="nav-log-out"><a href="/logout">Logout</a></li>
+		<li><div class="{{#if underlineLexis}}underline{{/if}} navbar-lexis"><a href="/">Lexis</a></div></li>
+		<li><div class="{{#if underlineWords}}underline{{/if}} navbar-profile"><a href="/userWords">My words</a></div></li>
+		<li><div class="{{#if underlineLogout}}underline{{/if}} navbar-logout"><a href="/logout">Logout</a></div></li>
 	</ul>
 	{{else}}
 	<ul>
-		<li class="col-xs-6 col-md-8 {{#if underlineLexis}}underline{{/if}}"><a href="/"><h2 class="col-md-10 col-md-offset-2">Lexis</h2></a></li>
-		<li class="col-xs-3 col-md-1 col-md-offset-2 {{#if underlineLogin}}underline{{/if}}" id="nav-log-in"><a href="/login">Login</a></li>
-		<li class="col-xs-3 col-md-1 {{#if underlineSignup}}underline{{/if}}" id="nav-sign-up"><a href="/signup">Signup</a></li>
+		<li><div class="{{#if underlineLexis}}underline{{/if}} navbar-lexis"><a href="/">Lexis</a></div></li>
+		<li><div class="{{#if underlineLogin}}underline{{/if}} navbar-login"><a href="/login">Login</a></div></li>
+		<li><div class="{{#if underlineSignup}}underline{{/if}} navbar-signup"><a href="/signup">Signup</a></div></li>
 	</ul>
 	{{/if}}
 </div>

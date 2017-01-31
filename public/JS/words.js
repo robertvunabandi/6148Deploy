@@ -230,8 +230,9 @@ function makeQuizBar(){
 	append += "<div class='container-fluid'>"
 	append += "<div class ='quiz-box col-md-8 col-xs-10 col-lg-6'>";
 	// append += "<div class='col-md-4 col-xs-4 col-lg-4'>My words</div>";
-	var svgDownload = 
-	append += "<div class='col-md-12 col-xs-12 col-lg-12'>My words</div><div id='quizlet-export' class='col-md-4 col-xs-4 col-lg-4 export'>Export to Quizlet</div><div id='pdf-import' class='col-md-4 col-xs-4 col-lg-4 export'>PDF</div><div id='plain-import' class='col-md-4 col-xs-4 col-lg-4 export'><a id='plain-import-a' download='myWords.txt' href='data:text/plain,XXXXX'>plain-text</a></div>";
+	var svgExport = '<svg class="svgED" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>';
+	var svgDownload = '<svg class="svgED" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
+	append += "<div class='col-md-12 col-xs-12 col-lg-12'>My Words</div><div id='quizlet-export' class='col-md-4 col-xs-4 col-lg-4 export'>Quizlet"+svgExport+"</div><div id='pdf-import' class='col-md-4 col-xs-4 col-lg-4 export'>PDF"+svgDownload+"</div><div id='plain-import' class='col-md-4 col-xs-4 col-lg-4 export'><a id='plain-import-a' download='myWords.txt' href='data:text/plain,XXXXX'>plain-text"+svgDownload+"</a></div>";
 	append += "</div>";
 	append += "</div>";
 	return append;
