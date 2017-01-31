@@ -5,6 +5,8 @@ var router = express.Router();
 var chalk = require('chalk');
 var sanitize = require('mongo-sanitize');
 
+var hbs = require('hbs');
+hbs.registerPartials(__dirname+"/views/partials");
 function pLog(something, color){
 	var message;
 	switch (color){
