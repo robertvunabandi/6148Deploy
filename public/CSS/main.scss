@@ -121,6 +121,11 @@ body {//background-color: rgba(17,35,65,1);
 	.define-on-google:hover {}
 }
 /* * * INDEX PAGE * * */
+#citeOxford {
+	position: fixed;
+	bottom: 5rem; width: 100%; text-align: center; color: rgba(240,240,240,1); 
+	font-weight: bold;
+}
 .header {
 	min-height: 10rem;
 }
