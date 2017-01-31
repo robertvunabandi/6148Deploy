@@ -62,8 +62,8 @@ app.use(passport.session());
 app.use('/', routes);
 app.use('/users', users);
 
-var exphbs = require('express-handlebars');
-app.engine('.hbs', exphbs({extname: '.hbs'}));
+var handlebars = require('express-handlebars');
+app.engine('.hbs', handlebars({extname: '.hbs'}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
