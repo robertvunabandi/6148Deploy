@@ -247,8 +247,8 @@ body {
         float: left !important;
         right: 1rem; }
         .global .search .result-word .add-word .add-word-svg {
-          width: 6rem;
-          stroke-width: 2; }
+          stroke-width: 2;
+          fill: #893e44; }
         .global .search .result-word .add-word .st0 {
           stroke: black;
           stroke-width: 2;
@@ -256,7 +256,7 @@ body {
         .global .search .result-word .add-word .add-word-svg, .global .search .result-word .add-word .st0 {
           transition: fill 150ms, stroke 150ms, stroke-width 200ms; }
         .global .search .result-word .add-word .add-word-svg:hover {
-          fill: #eadeb8;
+          fill: #37ae8d;
           stroke-width: 5; }
           .global .search .result-word .add-word .add-word-svg:hover .st0 {
             stroke: #eadeb8;
@@ -490,7 +490,9 @@ body {
     fill: #37ae8d; }
   .words .myword-title {
     font-weight: bold;
-    line-height: 7rem; }
+    line-height: 5rem;
+    background-color: transparent;
+    box-shadow: none !important; }
   .words .svgED {
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
@@ -519,7 +521,7 @@ body {
     .words .quiz-box .export {
       color: black;
       font-size: 2.5rem !important;
-      background-color: #99b3e6;
+      background-color: #893e44;
       font-weight: bold;
       transition: background-color 200ms, text-shadow 200ms;
       -webkit-user-select: none;
@@ -527,11 +529,9 @@ body {
       -ms-user-select: none;
       user-select: none; }
     .words .quiz-box .export:hover {
-      background-color: #eadeb8;
-      text-shadow: 0 0 1.25rem rgba(255, 255, 255, 0.8); }
+      background-color: #37ae8d; }
     .words .quiz-box .export:active, .words .quiz-box .export:focus {
-      background-color: #decc91;
-      text-shadow: 1px 1px rgba(255, 255, 255, 0.35), -1px -1px rgba(255, 255, 255, 0.15), 0 0 1.25rem rgba(255, 255, 255, 0.8); }
+      background-color: #decc91; }
     .words .quiz-box #pdf-import {
       z-index: 3; }
     .words .quiz-box #plain-import a:link, .words .quiz-box #plain-import a:visited {
@@ -584,21 +584,23 @@ body {
       background-color: #eadeb8; }
     .words .words-box .last {
       margin: 1rem 0rem 1rem 0rem; }
-    .words .words-box .word-input-definition-submit {
+    .words .words-box .save-delete {
+      position: relative;
+      float: right;
+      right: 0;
+      display: inline-block; }
+    .words .words-box .word-input-definition-submit, .words .words-box .word-input-definition-delete {
       font-size: 2rem;
       border: none;
       background-color: transparent;
       text-decoration: underline;
-      position: relative;
-      float: right;
-      right: 0;
       transition: color 200ms, background-color 200ms; }
-    .words .words-box .word-input-definition-submit:hover {
+    .words .words-box .word-input-definition-submit:hover, .words .words-box .word-input-definition-delete:hover {
       color: #9e2e2e;
       outline: none; }
-    .words .words-box .word-input-definition-submit:active {
+    .words .words-box .word-input-definition-submit:active, .words .words-box .word-input-definition-delete:active {
       outline: none; }
-    .words .words-box .word-input-definition-submit:focus {
+    .words .words-box .word-input-definition-submit:focus, .words .words-box .word-input-definition-delete:focus {
       outline: none; }
     .words .words-box .word-input-definition {
       font-size: 2rem;

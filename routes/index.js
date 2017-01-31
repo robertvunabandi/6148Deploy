@@ -157,6 +157,7 @@ router.post('/words', function(req, res, next) {
 			}
 			var index = user.userWords.length;
 			if (index == 0){
+				message.error = false;
 				message.data.push("You have not saved any word yet.");
 				return res.send(message);
 			}
@@ -238,11 +239,10 @@ router.get('/search-word', function(req, res, next){
 router.post('/add-word', function(req, res, next){
 	var message;
 	if(req.isAuthenticated()){
-		var word = req.body.word; 
+		var word = req.body.word;
 		var definition = req.body.definition;
-		// pLog(req.user.useWords);
 		var duplicated = false;
-		User.findOne({username: req.user.username}, function (err, user){
+		User.findOne({username: req.user.username}, function (err, user, next){
 			if (err){
 				message = {success:false, message:"<h5>Internal Server Error: User not found.</h5>"};
 				return res.send(message);
@@ -252,22 +252,25 @@ router.post('/add-word', function(req, res, next){
 				if (word == user.userWords[x].word){
 					duplicated = true;
 					pLog("<DUPLICATED WORD, NOT ADDED>");
+					message = {success:true, message:"<div style='font-size: 3rem;'><span style='color: rgba(222,204,145,1); font-size: 3rem;'>"+word+"</span> is already in your words.</div>"};
 					break;
 				}
 			}
 			if (!duplicated){
 				pLog("WORD+"+word);
+				message = {success:true, message:"<div style='font-size: 3rem;'><span style='color: rgba(222,204,145,1); font-size: 3rem;'>"+word+"</span> is now in your words.</div>"};
 				user.userWords[index] = {word: word, id: index, definition:definition};
 				user.save();
 			}
 		});
 		if (!duplicated) {
-			message = {success:true, message:"<div style='font-size: 3rem;'><span style='color: rgba(222,204,145,1); font-size: 3rem;'>"+word+"</span> is already in your words.</div>"};
-		}
-		else {
+			pLog(duplicated, "green");
 			message = {success:true, message:"<div style='font-size: 3rem;'><span style='color: rgba(222,204,145,1); font-size: 3rem;'>"+word+"</span> is now in your words.</div>"};
 		}
-		pLog(message.message, "red");
+		else {
+			pLog(duplicated, "green");
+			message = {success:true, message:"<div style='font-size: 3rem;'><span style='color: rgba(222,204,145,1); font-size: 3rem;'>"+word+"</span> is already in your words.</div>"};
+		}
 	}
 	else {
 		message = {success:false, message:"<h5>sign up or log in to add a new word</h5>"};
@@ -275,6 +278,38 @@ router.post('/add-word', function(req, res, next){
 	message.message += "<p>Click here to dismiss</p>";
 	res.send(message);
 });
-
+/* DELETE A WORD */
+router.post('/delete-word', function(req, res, next){
+	var message = {success: false, userfound:false}
+	if(req.isAuthenticated()){
+		var word = req.body.word;
+		User.findOne({username: req.user.username}, function (err, user, next){
+			if (err){
+				message = {success:false, userfound:true};
+				return res.send(message);
+			}
+			var index;
+			for (x in user.userWords){
+				if (word == user.userWords[x].word){
+					index = x;
+					pLog("<FOUND INDEX>");
+					break;
+				}
+			}
+			pLog(index);
+			index = parseInt(index);
+			var list1 = user.userWords;
+			var list2 = user.userWords;
+			var listLength = user.userWords.length;
+			var slice1 = list1.slice(0,index);
+			var slice2 = list2.slice(index+1,listLength);
+			user.userWords = slice1.concat(slice2);
+			user.save();
+			message = {success:true, userfound:true};
+			res.send(message);
+		});
+	}
+	else res.send(message);
+});
 
 module.exports = router;

@@ -67,7 +67,7 @@ function addword(){
 				// console.log(data.message);
 			},
 			error: function (xhr, status, error){
-				console.log("ERROR:", error)
+				console.log("ERROR:", error);
 			},
 		});
 	});
@@ -135,7 +135,8 @@ function parseData(object, removeSVG){
 	*/
 	var append = ""; //all text appended to this;
 	if (removeSVG !== true){
-		var svg = '<?xml version="1.0" encoding="utf-8"?><!-- Generator: Adobe Illustrator 21.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version="1.1" class="add-word-svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><g><path d="M25,2c12.7,0,23,10.3,23,23S37.7,48,25,48S2,37.7,2,25S12.3,2,25,2 M25,0C11.2,0,0,11.2,0,25s11.2,25,25,25s25-11.2,25-25S38.8,0,25,0L25,0z"/></g><line class="st0" x1="25" y1="5" x2="25" y2="45"/><line class="st0" x1="5" y1="25" x2="45" y2="25"/></svg>';
+		var svg = '<svg class="add-word-svg" id="Layer_1" height="65" viewBox="0 0 24 24" width="65" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>';
+		// var svg = '<?xml version="1.0" encoding="utf-8"?><!-- Generator: Adobe Illustrator 21.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  --><svg version="1.1" class="add-word-svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve"><g><path d="M25,2c12.7,0,23,10.3,23,23S37.7,48,25,48S2,37.7,2,25S12.3,2,25,2 M25,0C11.2,0,0,11.2,0,25s11.2,25,25,25s25-11.2,25-25S38.8,0,25,0L25,0z"/></g><line class="st0" x1="25" y1="5" x2="25" y2="45"/><line class="st0" x1="5" y1="25" x2="45" y2="25"/></svg>';
 		append += "<span class='add-word'>"+svg+"</span>";
 	}
 	append += "<div id='result-word-fetch'></div>";
@@ -163,7 +164,7 @@ function parseData(object, removeSVG){
 					if ((x == "0" || x == 0) && (y == "0" || y == 0) && (z == "0" || z == 0) && (a == "0" || a == 0)) {currentOxDef = definitions[a]; fixCurrentOxDef();}
 					if (addPlus) addDefSVG = '<svg class="addDefSVG" id="'+title+'_AP'+x+y+z+a+'" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>';
 					else addDefSVG = "";
-					append += "<p class='definition'><span class='numbered-definition'>"+addDefSVG+number+" </span>"+definitions[a]+"</p>";
+					append += "<p class='definition'><span class='numbered-definition'>"+addDefSVG+number+" </span><span class='"+title+"_AP"+x+y+z+a+"'>"+definitions[a]+"</span></p>";
 				}
 				append += "<ul>";
 				for (a in examples){

@@ -174,12 +174,15 @@ body {//background-color: rgba(17,35,65,1);
 				// background-color: rgba(255,255,255,0.8);
 				padding: 1rem 1rem 0rem 1rem; 
 				float: left !important; right: 1rem;
-				.add-word-svg {width: 6rem; stroke-width:2;}
+				.add-word-svg {stroke-width:2; fill: rgba(137, 62, 68, 1);}
 				.st0 {stroke: black; stroke-width:2; stroke-linecap:round;}
 				.add-word-svg, .st0 {transition: fill 150ms, stroke 150ms, stroke-width 200ms;}
-				.add-word-svg:hover {
+				.add-word-svg:hover { //HASHHH
 					//this is cool. .st0 is embedded in hover of it's block
-					fill: rgba(234,222,184,1);
+					// fill: rgba(234,222,184,1);
+					
+					fill:#37ae8d;
+
 					stroke-width: 5;
 					.st0 {stroke: rgba(234,222,184,1); stroke-width:5;}
 				}
@@ -405,7 +408,7 @@ body {//background-color: rgba(17,35,65,1);
 		fill:#37ae8d;
 	}
 	font-size: 2rem;
-	.myword-title {font-weight: bold; line-height: 7rem;}
+	.myword-title {font-weight: bold; line-height: 5rem; background-color: rgba(0,0,0,0); box-shadow: none !important;}
 	.svgED {
 		background-color: rgba(0,0,0,0.1);
 		border-radius: 0.5rem;
@@ -429,10 +432,10 @@ body {//background-color: rgba(17,35,65,1);
 		}
 		.upload-option {padding: 0rem 0.5rem; background-color: rgba(0,0,0,0); box-shadow: 0px 0px 0px rgba(0,0,0,0.0);}
 		.export{
-			color: black; font-size: 2.5rem !important; 
-			background-color: rgba(153,179,230,1); font-weight: bold; transition: background-color 200ms, text-shadow 200ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
-		.export:hover {background-color: rgba(234,222,184,1); text-shadow: 0 0 1.25rem rgba(255,255,255,0.8);}
-		.export:active, .export:focus {background-color: rgba(222,204,145,1); text-shadow: 1px 1px rgba(255,255,255,0.35), -1px -1px rgba(255,255,255,0.15), 0 0 1.25rem rgba(255,255,255,0.8);}
+			color: black; font-size: 2.5rem !important; //LASTHASH
+			background-color: rgba(137,62,68,1); font-weight: bold; transition: background-color 200ms, text-shadow 200ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+		.export:hover {background-color: rgba(55,174,141,1); }
+		.export:active, .export:focus {background-color: rgba(222,204,145,1);}
 		#pdf-import {z-index: 3;}
 		#plain-import {
 			a:link, a:visited {text-decoration: none; color: black; font-size: 2.5rem !important;}
@@ -490,11 +493,16 @@ body {//background-color: rgba(17,35,65,1);
 		.last {
 			margin: 1rem 0rem 1rem 0rem;
 		}
+		.save-delete {
+			position: relative; float: right; right: 0; display: inline-block;
+		}
+		.word-input-definition-delete {
+			@extend .word-input-definition-submit;
+		}
 		.word-input-definition-submit {
 			font-size: 2rem;
 			border: none; background-color: rgba(0,0,0,0);
 			text-decoration: underline;
-			position: relative; float: right; right: 0;
 			transition: color 200ms, background-color 200ms;
 		}
 		.word-input-definition-submit:hover { //HASHH

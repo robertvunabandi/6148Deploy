@@ -1,9 +1,7 @@
 var currentWords = [];
 var shadeAll = "<div class='shade-all' style='display:none'></div>";
 var plainTextDownload = "";
-function changeHTML(id, value){
-	$("#"+id).html(value);
-}
+var fXid; var fXword; var fXtextAreaID; var fXindex; var fXnextDef;
 $(document).ready(function(){
 	//words displays the user words
 	words();
@@ -33,7 +31,35 @@ $(document).ready(function(){
 			error: function (xhr, status, error){
 			console.log("ERROR FROM SERVER:", error);
 			}
-		})
+		});
+	});
+	//Delete a word
+	$(".word-input-definition-delete").click(function(){
+		var id = this.id;
+		var idChange = id.replace("-","");
+		var valueId = idChange+"_";
+		var value = $("#"+valueId).val();
+		var word = idChange.replace(/ID/, '').toLowerCase();
+		var divID = idChange.replace("ID", "") + "_BOX";
+		console.log(divID);
+		$.ajax({
+			url: '/delete-word',
+			data: {word: word},
+			type: 'POST',
+			async: false,
+			success: function (data){
+				if (data.success == false){console.log("ERROR OCCURED:", data.data);}
+				else {
+					console.log("WORD DELETED. RESPONSE:", data);
+					$("#"+divID).fadeTo("slow",0,function(){
+						$("#"+divID).css("display", "none");
+					});
+				}
+			},
+			error: function (xhr, status, error){
+			console.log("ERROR FROM SERVER:", error);
+			}
+		});
 	});
 	// Find the toggles and hide their content
 	$('.toggle').each(function(){
@@ -74,17 +100,6 @@ $(document).ready(function(){
 					var ouput = parseData(dataReceived, true);
 					$("#"+wordLKPID).html(ouput);
 					$("#"+wordLKPID).slideToggle();
-					//ChangeDefinitiononOnClick - - - - - - - - - - -
-					$(".addDefSVG").click(function(){ //HASH
-						console.log("WOWOW");
-						var id = this.id;
-						var word = id.replace(/\_AP[0-9]+/,"");
-						var textAreaID = word+"ID_";
-						var index = currentWords.indexOf(word);
-						var nextDef = "20";
-						$("#"+textAreaID).html(nextDef);
-						changeHTML(textAreaID, nextDef);
-					});
 				},
 				error: function (xhr, status, error){
 					$("#"+wordLKPID).html("ERROR OCCURED");
@@ -92,6 +107,34 @@ $(document).ready(function(){
 				}
 			});
 		} else {$("#"+wordLKPID).slideToggle();}
+		//ChangeDefinitiononOnClick - - - - - - - - - - -
+		$(".addDefSVG").click(function(){ //HASH
+			console.log("WOWOW");
+			fXid = this.id;
+			fXword = fXid.replace(/\_AP[0-9]+/,"");
+			fXtextAreaID = fXword+"ID_";
+			fXindex = currentWords.indexOf(fXword);
+			fXnextDef = $("#"+fXid).parent().next("."+fXid).html();
+			console.log(fXnextDef);
+			$("#"+fXtextAreaID).html(fXnextDef);
+			var id = fXtextAreaID.replace("_","");
+			var valueId = id+"_";
+			var value = $("#"+valueId).val();
+			var word = id.replace(/ID/, '').toLowerCase();
+			$.ajax({
+				url: '/saveDefinition',
+				data: {word: word, def:value},
+				type: 'POST',
+				async: false,
+				success: function (data){
+					if (data.success == false){console.log("ERROR OCCURED:", data.data);}
+					else console.log("DEFINITION SAVED. RESPONSE:", data);
+				},
+				error: function (xhr, status, error){
+				console.log("ERROR FROM SERVER:", error);
+				}
+			})
+		});
 	});
 	//function to put text on quizlet export
 	$("#quizlet-export").click(function(){
@@ -160,12 +203,6 @@ $(document).ready(function(){
 		doc.text(madeWithLexis, 6.1, 0.5);
 		doc.save('myWords.pdf');
 	});
-	//function to download as plain-text
-	$("#plain-import").click(function(){
-		var el = document.getElementById("plain-import-a");
-		var plainTextInB64 = btoa(plainTextDownload);
-		el.href = "data:text/plain;base64," + plainTextInB64;
-	});
 	//remove any modal
 	$(".shade-all").click(function(){
 		$("#quizlet-import-modal").fadeTo("fast",1, function(){
@@ -191,19 +228,28 @@ function words(){
 				console.log("%cYES", "color: green; font-weight: bold;");
 				// console.log(data);
 				var append = "";
-				addPlus = true;
-				append += makeQuizBar();
-				append += displayWords(filterDuplicates(data.data), data.definitions);
-				append += makeWordGuides();
-				currentWords = filterDuplicates(data.data);
-				currentDefinitions = filterDuplicates(data.definitions);
-				var newline = "\n";
-				plainTextDownload += "My Words " + newline + newline;
-				for (x in currentWords){
-					plainTextDownload += currentWords[x] + ": " + currentDefinitions[x]+ ";" + newline;
+				if (data.error == false){
+					append += makeQuizBar();
+					append += displayWords((data.data), data.definitions);
+					currentWords = (data.data);
+					currentDefinitions = (data.definitions);
+					append += makeWordGuides();
+					$(".words").html(append);
+				} else {
+					addPlus = true;
+					append += makeQuizBar();
+					append += displayWords((data.data), data.definitions);
+					currentWords = (data.data);
+					currentDefinitions = (data.definitions);
+					append += makeWordGuides();
+					var newline = "\n";
+					plainTextDownload += "My Words " + newline + newline;
+					for (x in currentWords){
+						plainTextDownload += currentWords[x] + ": " + currentDefinitions[x]+ ";" + newline;
+					}
+					plainTextDownload += newline + newline + newline + "Generated with LEXIS | All Rights Reserved";
+					$(".words").html(append);
 				}
-				plainTextDownload += newline + newline + newline + "Generated with LEXIS | All Rights Reserved";
-				$(".words").html(append);
 			}
 		},
 		error: function (xhr, status, error){
@@ -248,7 +294,9 @@ function makeQuizBar(){
 	// append += "<div class='col-md-4 col-xs-4 col-lg-4'>My words</div>";
 	var svgExport = '<svg class="svgED" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>';
 	var svgDownload = '<svg class="svgED" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
-	append += "<div class='col-md-12 col-xs-12 col-lg-12 myword-title'>My Words</div><div class='col-md-4 col-xs-4 col-lg-4 upload-option' ><div id='quizlet-export' class='col-md-12 col-xs-12 col-lg-12 export'>Quizlet"+svgExport+"</div></div><div class='col-md-4 col-xs-4 col-lg-4 upload-option' ><div id='pdf-import' class='col-md-12 col-xs-12 col-lg-12 export'>PDF"+svgDownload+"</div></div><div class='col-md-4 col-xs-4 col-lg-4 upload-option' ><div id='plain-import' class='col-md-12 col-xs-12 col-lg-12 export'><a id='plain-import-a' download='myWords.txt' href='data:text/plain,XXXXX'>plain-text"+svgDownload+"</a></div></div>";
+	var exportOptions = "<div class='col-md-6 col-xs-6 col-lg-6 upload-option' ><div id='quizlet-export' class='col-md-12 col-xs-12 col-lg-12 export'>Quizlet"+svgExport+"</div></div><div class='col-md-6 col-xs-6 col-lg-6 col-md-offset-3 col-xs-offset-3 col-lg-offset-3 upload-option' ><div id='pdf-import' class='col-md-12 col-xs-12 col-lg-12 export'>PDF"+svgDownload+"</div></div>";
+	append += "<div style='background-color:white; padding: 0.5rem 0rem;' class='col-md-12 col-xs-12 col-lg-12 '><div class='myword-title'>My Words</div>"+exportOptions+"</div>";
+
 	append += "</div>";
 	append += "</div>";
 	return append;
@@ -268,12 +316,15 @@ function displayWords(array, definitions){
 	var input = "";
 	append += "<div class='container-fluid'>"
 	append += "<div class ='words-box col-md-8 col-xs-10 col-lg-6'>";
+	var del = "";
 	//
 	if (array[0]== "You have not saved any word yet.") {append += "<span class='word'>"+array[0]+"</span><br>";}
 	else for (var x = 0; x < listLength; x++){
 		append += "<div class='container-fluid' id='"+array[x]+"_BOX'>";
-		if (definitions[x] == null) input = "<input type='submit' value='save definition' class='word-input-definition-submit' id='"+array[x]+"ID' ><textarea type='text' class='word-input-definition' id='"+array[x]+"ID_'></textarea>";
-		else input = "<input type='submit' value='save definition' class='word-input-definition-submit' id='"+array[x]+"ID' ><textarea type='text' class='word-input-definition' id='"+array[x]+"ID_'>"+definitions[x]+"</textarea>";
+		del = "<input type='submit' value='delete' class='word-input-definition-delete' id='"+array[x]+"ID-' >";
+		if (definitions[x] == null) input = "<span class='save-delete'><input type='submit' value='save' class='word-input-definition-submit' id='"+array[x]+"ID' >"+del+"</span><textarea type='text' class='word-input-definition' id='"+array[x]+"ID_'></textarea>";
+		else input = "<div class='save-delete'><input type='submit' value='save' class='word-input-definition-submit' id='"+array[x]+"ID' >"+del+"</div><textarea type='text' class='word-input-definition' id='"+array[x]+"ID_'>"+definitions[x]+"</textarea>";
+		
 		// if (x == listLength - 1) append += "<span class='word last'>"+array[x]+"</span>"+input+"<br>";
 		append += "<span class='word' id='"+array[x]+"+'>"+array[x]+"</span>"+input+"<br>";
 		append += "</div>";
@@ -297,7 +348,7 @@ function makeWordGuides() {
 	var append = "";
 	append += "<div class='container-fluid'>"
 	append += "<div class ='words-guides col-md-8 col-xs-10 col-lg-6'>";
-	append += "You can modify the given definition or click on the word for the dictionary definition.";
+	append += "You can modify a word's definition by clicking on the given definition and editing it or clicking on the word itself to choose from a set of dictionary definitions.";
 	append += "</div>";
 	return append;
 }
