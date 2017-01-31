@@ -24,13 +24,12 @@ var users = require('./routes/users');
 var app = express();
 var mongoose = require('mongoose');
 
-var mongoClient = require("mongodb").MongoClient;
-
 // mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/lexis')
-MongoClient.connect("mongodb://lexis:INT4AfwDVxtCpJvR8aTi9fzmdGTyR11ZXs3rm5TpzZe4tKecP8Ru3AfKmRC8l05DvziS0IlJMl3TQQTM7520Mw==@lexis.documents.azure.com:10250/?ssl=true", function (err, db) {
+var mongoClient = require("mongodb").MongoClient;
+mongoClient.connect("mongodb://lexis:INT4AfwDVxtCpJvR8aTi9fzmdGTyR11ZXs3rm5TpzZe4tKecP8Ru3AfKmRC8l05DvziS0IlJMl3TQQTM7520Mw==@lexis.documents.azure.com:10250/?ssl=true", function (err, db) {
   db.close();
 });
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://lexis:INT4AfwDVxtCpJvR8aTi9fzmdGTyR11ZXs3rm5TpzZe4tKecP8Ru3AfKmRC8l05DvziS0IlJMl3TQQTM7520Mw==@lexis.documents.azure.com:10250/?ssl=true&sslverifycertificate=false')
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://lexis:INT4AfwDVxtCpJvR8aTi9fzmdGTyR11ZXs3rm5TpzZe4tKecP8Ru3AfKmRC8l05DvziS0IlJMl3TQQTM7520Mw==@lexis.documents.azure.com:10250/?ssl=true&sslverifycertificate=false');
 /*
 Example localhost: 'mongodb://localhost:27017/test';
 Example Azure URI: mongodb://aaronsmongodbrw:xSJEozk4Tmg74Q1iyXMN0sEgr0PfegnIrDz5xq8N5UvmwlsFSSqGR0QMAx1nw5hdiENdcSQbHHK7t4ZQY0wf6g==@aaron    smongodbrw.documents.azure.com:10250/<db_name>?ssl=true
