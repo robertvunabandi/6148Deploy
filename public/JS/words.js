@@ -1,9 +1,13 @@
 var currentWords = [];
 var shadeAll = "<div class='shade-all' style='display:none'></div>";
 var plainTextDownload = "";
+function changeHTML(id, value){
+	$("#"+id).html(value);
+}
 $(document).ready(function(){
 	//words displays the user words
 	words();
+	addPlus = true;
 	//function to make text area auto resize
 	$('textarea').each(function(){
 		this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
@@ -67,10 +71,20 @@ $(document).ready(function(){
 				async: false,
 				success: function (dataReceived){
 					currentOxford = dataReceived;
-					// console.log(dataReceived);
 					var ouput = parseData(dataReceived, true);
 					$("#"+wordLKPID).html(ouput);
 					$("#"+wordLKPID).slideToggle();
+					//ChangeDefinitiononOnClick - - - - - - - - - - -
+					$(".addDefSVG").click(function(){ //HASH
+						console.log("WOWOW");
+						var id = this.id;
+						var word = id.replace(/\_AP[0-9]+/,"");
+						var textAreaID = word+"ID_";
+						var index = currentWords.indexOf(word);
+						var nextDef = "20";
+						$("#"+textAreaID).html(nextDef);
+						changeHTML(textAreaID, nextDef);
+					});
 				},
 				error: function (xhr, status, error){
 					$("#"+wordLKPID).html("ERROR OCCURED");
@@ -177,6 +191,7 @@ function words(){
 				console.log("%cYES", "color: green; font-weight: bold;");
 				// console.log(data);
 				var append = "";
+				addPlus = true;
 				append += makeQuizBar();
 				append += displayWords(filterDuplicates(data.data), data.definitions);
 				append += makeWordGuides();
@@ -197,6 +212,7 @@ function words(){
 		}
 	});
 }
+
 function quizletImportText(){
 	$.ajax({
 		url: "/words",
@@ -232,7 +248,7 @@ function makeQuizBar(){
 	// append += "<div class='col-md-4 col-xs-4 col-lg-4'>My words</div>";
 	var svgExport = '<svg class="svgED" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>';
 	var svgDownload = '<svg class="svgED" fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
-	append += "<div class='col-md-12 col-xs-12 col-lg-12'>My Words</div><div id='quizlet-export' class='col-md-4 col-xs-4 col-lg-4 export'>Quizlet"+svgExport+"</div><div id='pdf-import' class='col-md-4 col-xs-4 col-lg-4 export'>PDF"+svgDownload+"</div><div id='plain-import' class='col-md-4 col-xs-4 col-lg-4 export'><a id='plain-import-a' download='myWords.txt' href='data:text/plain,XXXXX'>plain-text"+svgDownload+"</a></div>";
+	append += "<div class='col-md-12 col-xs-12 col-lg-12 myword-title'>My Words</div><div class='col-md-4 col-xs-4 col-lg-4 upload-option' ><div id='quizlet-export' class='col-md-12 col-xs-12 col-lg-12 export'>Quizlet"+svgExport+"</div></div><div class='col-md-4 col-xs-4 col-lg-4 upload-option' ><div id='pdf-import' class='col-md-12 col-xs-12 col-lg-12 export'>PDF"+svgDownload+"</div></div><div class='col-md-4 col-xs-4 col-lg-4 upload-option' ><div id='plain-import' class='col-md-12 col-xs-12 col-lg-12 export'><a id='plain-import-a' download='myWords.txt' href='data:text/plain,XXXXX'>plain-text"+svgDownload+"</a></div></div>";
 	append += "</div>";
 	append += "</div>";
 	return append;
@@ -285,5 +301,4 @@ function makeWordGuides() {
 	append += "</div>";
 	return append;
 }
-
 

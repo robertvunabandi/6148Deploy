@@ -2,14 +2,19 @@
 	{{#if logged}}
 	<ul>
 		<li><div class="{{#if underlineLexis}}underline{{/if}} navbar-lexis"><a href="/">Lexis</a></div></li>
-		<li><div class="{{#if underlineWords}}underline{{/if}} navbar-profile"><a href="/userWords">My words</a></div></li>
-		<li><div class="{{#if underlineLogout}}underline{{/if}} navbar-logout"><a href="/logout">Logout</a></div></li>
+		<div class="navbar-not-lexis">
+		<li><div class="{{#if underlineWords}}underline{{/if}} navbar-profile navbar-login"><a href="/userWords">My words</a></div></li>
+		<li><div class="{{#if underlineLogout}}underline{{/if}} navbar-logout navbar-signup"><a href="/logout">Logout</a></div></li>
+		</div>
 	</ul>
 	{{else}}
 	<ul>
 		<li><div class="{{#if underlineLexis}}underline{{/if}} navbar-lexis"><a href="/">Lexis</a></div></li>
-		<li><div class="{{#if underlineLogin}}underline{{/if}} navbar-login"><a href="/login">Login</a></div></li>
-		<li><div class="{{#if underlineSignup}}underline{{/if}} navbar-signup"><a href="/signup">Signup</a></div></li>
+		<div class="navbar-not-lexis">
+			<li><div class="{{#if underlineLogin}}underline{{/if}} navbar-login"><a href="/login">Login</a></div></li>
+			<li><div class="{{#if underlineSignup}}underline{{/if}} navbar-signup"><a href="/signup">Signup</a></div></li>
+		</div>
 	</ul>
 	{{/if}}
 </div>
+{{!-- <div id="overlay"></div> --}}

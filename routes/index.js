@@ -220,14 +220,17 @@ router.get('/aboutUs', function(req, res, next) {
 var lookup = require('../lookup.js');
 router.get('/search-word', function(req, res, next){
 	var word = req.query.word;
-	// pLog(word, "red");
+	pLog(word, "red");
 	lookup(word, function(error, response, body){
 		if (!error && response.statusCode == 200){
 			var jsonDump = JSON.parse(body);
 			// console.log(jsonDump);
 			res.send(jsonDump);
-		} else if (error) {
+		} else if (error){
 			console.log(error);
+		} else {
+			pLog("ERROR, NOT FOUND", "red");
+			res.send("ERROR");
 		}
 	})
 });
