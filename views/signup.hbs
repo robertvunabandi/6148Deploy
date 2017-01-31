@@ -21,9 +21,13 @@
 	<script type="text/javascript" src="/JS/navbar.js"></script>
 	<!-- Link JS/signup.js -->
 	<script type="text/javascript" src="/JS/signup.js"></script>
+	<!-- Link icon -->
+	<link rel="icon" type="image/pgn" sizes="50x50" href="/images/lexis_icon.png">
+	<link rel="apple-touch-icon" sizes="50x50" href="/images/lexis_icon.png">
 </head>
 <body>
 	{{> navbar}}
+	{{> terms}}
 	<br><br>
 	<div class="container-fluid sign-up-box">
 	<form name="sign-up" method="post" action="/userSignup" class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 sign-up-form" >
@@ -50,7 +54,7 @@
 			</tr>
 			<tr>{{#if passworderror}}<span class="col-xs-10 col-md-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1 error-message wobble animated">that password is not allowed</span>{{/if}}</tr>
 			<tr>
-				<td class="agree-section"><input type="checkbox" name="agree-terms" autocomplete='off' required> I agree with Lexis' <a class="terms">Terms of Services</a>
+				<td class="agree-section"><input type="checkbox" name="agree-terms" autocomplete='off' required> I agree with Lexis' <a id="terms-link">Terms of Services</a>
 				</td>
 			</tr>
 		<tbody>

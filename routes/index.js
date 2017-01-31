@@ -234,16 +234,37 @@ router.get('/search-word', function(req, res, next){
 /*POST add-word page. */
 router.post('/add-word', function(req, res, next){
 	var message;
-	if(req.isAuthenticated()) {
-		var word = req.body.word.toLowerCase(); 
-		pLog(word);
+	if(req.isAuthenticated()){
+		var word = req.body.word; 
+		var definition = req.body.definition;
 		// pLog(req.user.useWords);
+		var duplicated = false;
 		User.findOne({username: req.user.username}, function (err, user){
+			if (err){
+				message = {success:false, message:"<h5>Internal Server Error: User not found.</h5>"};
+				return res.send(message);
+			}
 			var index = user.userWords.length;
-			user.userWords[index] = {word: word, id: index};
-			user.save();
+			for (x in user.userWords){
+				if (word == user.userWords[x].word){
+					duplicated = true;
+					pLog("<DUPLICATED WORD, NOT ADDED>");
+					break;
+				}
+			}
+			if (!duplicated){
+				pLog("WORD+"+word);
+				user.userWords[index] = {word: word, id: index, definition:definition};
+				user.save();
+			}
 		});
-		message = {success:true, message:"<div style='font-size: 3rem;'><span style='color: rgba(222,204,145,1); font-size: 3rem;'>"+word+"</span> is now in your words</div>"};
+		if (!duplicated) {
+			message = {success:true, message:"<div style='font-size: 3rem;'><span style='color: rgba(222,204,145,1); font-size: 3rem;'>"+word+"</span> is already in your words.</div>"};
+		}
+		else {
+			message = {success:true, message:"<div style='font-size: 3rem;'><span style='color: rgba(222,204,145,1); font-size: 3rem;'>"+word+"</span> is now in your words.</div>"};
+		}
+		pLog(message.message, "red");
 	}
 	else {
 		message = {success:false, message:"<h5>sign up or log in to add a new word</h5>"};

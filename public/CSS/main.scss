@@ -57,6 +57,31 @@ body {background-color: rgba(17,35,65,1);}
 		}
 	}
 }
+.terms-partial {
+	display: none;
+	z-index: 11; top: 40;
+	background-color: white;
+	position: fixed;
+	width: 100%;
+	div {
+		
+		ul {
+			display: block;
+			li {
+				display: block;
+				h2 {
+					font-size: 3rem;
+				}
+				p {
+					padding: 1rem;
+					background-color: white;
+					box-shadow: 0px 0px 0.5rem rgba(0,0,0,0.25);
+				}
+			}
+		}
+	}
+
+}
 .error-message {
 	color: #9e2e2e; 
 	text-align: center; 
@@ -67,6 +92,7 @@ body {background-color: rgba(17,35,65,1);}
 /* * * * LOGIN PAGE * * * */
 .login {
 	background-color: white; padding: 1rem; box-shadow: 0px 0px 10px rgba(0,0,0,0.25);
+
 	z-index: 14;
 	.login-form {
 		padding: auto 0rem;
@@ -123,12 +149,32 @@ body {background-color: rgba(17,35,65,1);}
 ::-moz-placeholder {color: rgba(255,255,255,0.6);}
 :-ms-input-placeholder {color: rgba(255,255,255,0.6);}
 :-moz-placeholder {color: rgba(255,255,255,0.6);}
-
+/* * * GLOBAL FOR THE WORD SEARCH * * */
+.word-search-master {
+	*:focus, *:active {outline: none; text-align: left !important;}
+	h4 {font-size: 2.25rem !important; font-weight: normal !important; text-align: left !important;}
+	.title {font-weight: bold; text-align: left !important;}
+	.title::first-letter {text-transform: uppercase;}
+	.category {padding: 0rem 0.5rem; margin: 1rem auto; border-left: 10px solid rgba(0,0,0,0.1); transition: border 200ms, color 200ms;}
+	.category:hover {border-left: 12px solid rgba(0,0,0,0.2);}
+	.definition {padding: 0rem auto; margin: 0rem auto;}
+	.numbered-definition {font-weight: bold; color: rgba(0,0,0,0.5);}
+	ul {padding: 0rem auto; margin: 0rem auto;}
+	li {padding: 0rem auto; margin: 0rem auto; font-style: italic; display: block;}
+	.example {font-size: 1.75rem;}
+	.example:before {content:"\"";}
+	.example:after {content:"\"";}
+	.define-on-google {
+		display: block; right: 1rem; float: right;
+		/*background-color: rgba(0,0,0,0.1);*/
+		transition: background-color 200ms, border 200ms;
+	}
+	.define-on-google:hover {}
+}
 /* * * INDEX PAGE * * */
 .header {
 	min-height: 10rem;
 }
-
 .global {
 	.search {
 		padding: 1rem;
@@ -140,7 +186,7 @@ body {background-color: rgba(17,35,65,1);}
 			border-left: 0px solid black;
 			border-right: 0px solid black;
 			display: block;
-			font-size: 4rem; font-weight: bold; color: white !important; text-align: center;
+			font-size: 4rem; font-weight: bold; color: white; text-align: center;
 			width: 100%;
 			transition: background-color 350ms, color 250ms;
 		}
@@ -172,35 +218,37 @@ body {background-color: rgba(17,35,65,1);}
 				margin: 0rem auto;
 			}
 			.add-word {
-				position: fixed;
-				padding: 1rem 1rem 0rem 1rem;
-				float: left !important;
-				.add-word-svg {width: 4rem; stroke-width:2;}
+				position: absolute;
+				background-color: rgba(255,255,255,0.8);
+				padding: 1rem 1rem 0rem 1rem; 
+				float: left !important; right: 1rem;
+				.add-word-svg {width: 6rem; stroke-width:2;}
 				.st0 {stroke: black; stroke-width:2; stroke-linecap:round;}
 				.add-word-svg, .st0 {transition: fill 150ms, stroke 150ms, stroke-width 200ms;}
 				.add-word-svg:hover {
 					//this is cool. .st0 is embedded in hover of it's block
-					fill: rgba(200,240,255,1);
+					fill: rgba(234,222,184,1);
 					stroke-width: 5;
-					.st0 {stroke: rgba(200,240,255,1); stroke-width:4;}
+					.st0 {stroke: rgba(234,222,184,1); stroke-width:5;}
 				}
 				.add-word-svg:active, .add-word-svg:focus {
 					//this is cool. .st0 is embedded in hover of it's block
-					fill: rgba(50,175,255, 1);
+					fill: rgba(158,46,46, 1);
 					stroke-width: 5;
-					.st0 {stroke: rgba(50,175,255, 1); stroke-width:4;}
+					.st0 {stroke: rgba(158,46,46, 1); stroke-width:5;}
 				}
 				
 			}
 			#result-word-fetch {
 				z-index: 10;
+				opacity: 0; display: none;
 				text-align: center;
-				position: fixed;
+				position: absolute;
 				transition: opacity 200ms;
 				color: white; font-weight: bold;
 				background-color: rgba(0,0,0,0.8);
 				h1, h2, h3, h4, h5, h6 {
-					font-size: 3rem !important;
+					font-size: 2.5rem !important;
 				}
 				*:not(p) {
 					position: relative;
@@ -304,11 +352,17 @@ body {background-color: rgba(17,35,65,1);}
 }
 
 /* * * * WORDS PAGE * * * */
+.shade-all {
+	z-index: 9;
+	position: fixed;
+	background-color: rgba(0,0,0,0.6); 
+	min-width: 100%; min-height: 100%;
+}
 .words {
 	*:focus {outline:none;}
 	.background {background-color: white; box-shadow: 0px 0px 10px rgba(0,0,0,0.25);}
 	div + div {
-		margin: 0.5rem 0rem 0.5rem 0rem;
+		margin: 0.5rem 0rem 0rem 0rem;
 	}
 	.quiz-box {
 		margin: 2rem 0rem 0rem 0rem !important;
@@ -316,23 +370,43 @@ body {background-color: rgba(17,35,65,1);}
 		div {
 			@extend .background;
 			font-size: 3rem;
-			margin: 0rem 0rem 0rem 0.5rem;
 			transition: background-color 200ms, color 200ms;
 			text-align: center;
 		}
-		#quiz-prompt {
-			background-color: rgba(222,204,145,0.8);
-			font-weight: bold;
+		.export{color: black; background-color: rgba(153,179,230,1); font-size: 100%;line-height: 120%; font-weight: bold; transition: background-color 200ms, text-shadow 200ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+		.export:hover {background-color: rgba(234,222,184,1); text-shadow: 0 0 1.25rem rgba(255,255,255,0.8);}
+		.export:active, .export:focus {background-color: rgba(222,204,145,1); text-shadow: 1px 1px rgba(255,255,255,0.35), -1px -1px rgba(255,255,255,0.15), 0 0 1.25rem rgba(255,255,255,0.8);}
+		#pdf-import {z-index: 3;}
+		#plain-import {
+			a:link, a:visited {text-decoration: none; color: black;}
 		}
-		#quiz-prompt:hover {
-			background-color: rgba(222,204,145,1);
-			text-shadow: 0 0 0.25rem rgba(255,255,255,1);
-			padding: auto 0rem;
+	}
+	#quizlet-import-modal {
+		text-align: center !important;
+		z-index: 20;
+		position: fixed; width: 70%; left: 5rem; top: 10rem;
+		background-color: white;
+		box-shadow: 0px 0px 0.5rem rgba(0,0,0,0.5);
+		.quizlet-emphasize {
+			text-decoration: underline;
 		}
-		#quiz-prompt:active, #quiz-prompt:focus {
-			background-color: rgba(210,186,106,1);
-			text-shadow: 1px 1px rgba(255,255,255,0.6), -1px -1px rgba(255,255,255,0.3), 0 0 1.25rem rgba(255,255,255,1); 
-			color: rgba(50,50,50,1);
+		#quizlet-instructions {
+			padding: 2rem;
+		}
+		#words-copy {
+			padding: 0rem 2rem 0rem 2rem;
+			textarea {
+				width: 100%;
+				resize: none;
+			}
+			#quizlet-text-to-copy {
+				font-size: 80%;
+				padding: 1rem; color: rgba(50,50,50,1);
+				border-left: 5px solid rgba(0,0,0,0.5);
+				border-right: 5px solid rgba(0,0,0,0.5);
+				border-top: none; border-bottom: none;
+				background-color: rgba(0,0,0,0.1);
+			}
 		}
 	}
 	.words-box {
@@ -396,7 +470,7 @@ body {background-color: rgba(17,35,65,1);}
 			border-bottom: 3px solid rgba(199,168,67,1);
 		}
 		.word-BOX-LKP {
-			background-color: rgba(209,97,97,1) !important;
+			background-color: rgba(234,222,184,1) !important;
 			box-shadow: inset 0px 0px 1rem rgba(0,0,0,0.9);
 		}
 	}

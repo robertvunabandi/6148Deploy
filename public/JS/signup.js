@@ -1,6 +1,12 @@
 $(document).ready(function(){
 	/*Generates the input for date, month, and year*/
 	genBDay();
+	$("#terms-link").click(function(){
+		$(".terms-partial").css("display","block");
+	});
+	$(".terms-partial").click(function(){
+		$(".terms-partial").css("display","none");
+	});
 });
 
 
